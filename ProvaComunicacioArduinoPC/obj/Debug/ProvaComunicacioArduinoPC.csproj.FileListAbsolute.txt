@@ -1,0 +1,10 @@
+C:\Users\Usuària\Documents\_UAB_\_TFG_\1r codi Prova\ProvaComunicacioArduinoPC\bin\Debug\ProvaComunicacioArduinoPC.exe.config
+C:\Users\Usuària\Documents\_UAB_\_TFG_\1r codi Prova\ProvaComunicacioArduinoPC\bin\Debug\ProvaComunicacioArduinoPC.exe
+C:\Users\Usuària\Documents\_UAB_\_TFG_\1r codi Prova\ProvaComunicacioArduinoPC\bin\Debug\ProvaComunicacioArduinoPC.pdb
+C:\Users\Usuària\Documents\_UAB_\_TFG_\1r codi Prova\ProvaComunicacioArduinoPC\obj\Debug\ProvaComunicacioArduinoPC.csprojAssemblyReference.cache
+C:\Users\Usuària\Documents\_UAB_\_TFG_\1r codi Prova\ProvaComunicacioArduinoPC\obj\Debug\ProvaComunicacioArduinoPC.Properties.Resources.resources
+C:\Users\Usuària\Documents\_UAB_\_TFG_\1r codi Prova\ProvaComunicacioArduinoPC\obj\Debug\ProvaComunicacioArduinoPC.csproj.GenerateResource.cache
+C:\Users\Usuària\Documents\_UAB_\_TFG_\1r codi Prova\ProvaComunicacioArduinoPC\obj\Debug\ProvaComunicacioArduinoPC.csproj.CoreCompileInputs.cache
+C:\Users\Usuària\Documents\_UAB_\_TFG_\1r codi Prova\ProvaComunicacioArduinoPC\obj\Debug\ProvaComunicacioArduinoPC.exe
+C:\Users\Usuària\Documents\_UAB_\_TFG_\1r codi Prova\ProvaComunicacioArduinoPC\obj\Debug\ProvaComunicacioArduinoPC.pdb
+C:\Users\Usuària\Documents\_UAB_\_TFG_\1r codi Prova\ProvaComunicacioArduinoPC\obj\Debug\ProvaComunicacioArduinoPC.Form1.resources
