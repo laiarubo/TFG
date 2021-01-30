@@ -1,0 +1,10 @@
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\bin\Debug\Biofeedback.exe.config
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\bin\Debug\Biofeedback.exe
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\bin\Debug\Biofeedback.pdb
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.Form1.resources
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.Properties.Resources.resources
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.csproj.GenerateResource.cache
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.csproj.CoreCompileInputs.cache
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.exe
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.pdb
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.csprojAssemblyReference.cache
