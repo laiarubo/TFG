@@ -2,10 +2,8 @@
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-
 using System.Windows.Forms;
 using System.IO.Ports;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +12,7 @@ using System.Threading;
 using System.Net.Sockets;
 using System.IO;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace Biofeedback
 {
@@ -31,13 +30,23 @@ namespace Biofeedback
         public StreamWriter STW;
         public string TEXT_REBRE;
         public string TEXT_ENVIAR;
-        // =================================
 
+        // Reproducció del vídeo/àudio (vista terapeuta)
+        bool ESTIMUL_DISPONIBLE = false;
+        int COMPTADOR_VIDEO = 0;
+        bool ATURA_PRIMER = true;
+
+        // Reproducció del vídeo/àudio (vista pacient)
+        private Form2 FRM2;
+        bool PRIMER_COP = true;
+        bool REPRODUINTSE = false;
+
+        // =================================
 
         public Form1()
         {
             InitializeComponent();
-
+           
             PORTS = SerialPort.GetPortNames();
             
             foreach (string PORT in PORTS)
@@ -56,10 +65,9 @@ namespace Biofeedback
                 connectarArduino();
             }
 
-            // Quadern de bitàcola
-       //     backgroundWorker1.RunWorkerAsync(); // L'aplicació llista els events
-            backgroundWorker1.WorkerSupportsCancellation = true; // El terapeuta publica notes
+            backgroundWorker1.WorkerSupportsCancellation = true; 
         }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -72,7 +80,7 @@ namespace Biofeedback
             label1.Text = DateTime.Now.ToShortDateString();
             label2.Text = DateTime.Now.ToLongTimeString();
         }
-
+      
         private void timer1_Tick(object sender, EventArgs e) // Perquè s'actualitzin els segons de l'hora
         {
             label2.Text = DateTime.Now.ToLongTimeString();
@@ -90,7 +98,6 @@ namespace Biofeedback
             PORT.Open(); // S'activa el port COM
             PORT.Write("#INICI\n");
         }
-
 
         private void NotesTerapeuta_TextChanged(object sender, EventArgs e)
         {
@@ -117,56 +124,176 @@ namespace Biofeedback
             }
         }
 
-        private void reiniciarQC()
-        {
-            checkBox1.Checked = false;
-        }
-
-        private void c_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             if (CONNECTAT)
             {
-                this.QuadernDeBitacola.Invoke(new MethodInvoker(delegate ()
+
+                QuadernBitacoles_richTextBox.Invoke(new MethodInvoker(delegate ()
                 {
-                    QuadernDeBitacola.AppendText(DateTime.Now.ToShortTimeString() + "    Nota: " + TEXT_ENVIAR + System.Environment.NewLine);
+                    QuadernBitacoles_richTextBox.AppendText(DateTime.Now.ToLongTimeString() + "    " + TEXT_ENVIAR + Environment.NewLine);
+                    PintarNotesDeBlau();
                 }));
             }
             else
             {
-                MessageBox.Show("Hi ha algun error. No es pot enviar la nota.");
+                MessageBox.Show("Error: Arduino no connectat.");
             }
             backgroundWorker1.CancelAsync();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        public void PintarNotesDeBlau()
         {
-            if (NotesTerapeuta.Text != "")
+            MatchCollection matches = Regex.Matches(QuadernBitacoles_richTextBox.Text, ".*Nota:.*\n");
+
+            //Apply color to all matching text
+            int matchCount = 0;
+            foreach (Match match in matches)
             {
-                TEXT_ENVIAR = NotesTerapeuta.Text;
-                backgroundWorker1.RunWorkerAsync();
+                // Posar tota la línia del terapeuta de color blau
+                QuadernBitacoles_richTextBox.Select(match.Index, match.Length);
+                QuadernBitacoles_richTextBox.SelectionColor = Color.Blue;
+
+                // Posar "Nota:" en negreta
+                Match match2 = Regex.Match(match.Value, "Nota:");
+                QuadernBitacoles_richTextBox.Select(match.Index + match2.Index, match2.Length); // Línia + columna per trobar la nota de cada línia
+                QuadernBitacoles_richTextBox.SelectionFont = new Font(QuadernBitacoles_richTextBox.Font, FontStyle.Bold);
             }
-            NotesTerapeuta.Text = "";
+        }
+        private void BotoEnvia_Click(object sender, EventArgs e)
+        {
+
+            if (CONNECTAT)
+            {
+                if (NotesTerapeuta.Text != "")
+                {
+                    TEXT_ENVIAR = "Nota: " + NotesTerapeuta.Text;
+                    backgroundWorker1.RunWorkerAsync();
+                }
+                NotesTerapeuta.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Error: Arduino no connectat.");
+            }
         }
 
         private void NotesTerapeuta_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                //button1_Click(this, new EventArgs()); // Fa el mateix que la línia següent:
-                button1.PerformClick();
+                //BotoEnvia_Click(this, new EventArgs()); // Fa el mateix que la línia següent:
+                BotoEnvia.PerformClick();
             }
         }
 
-        private void QuadernDeBitacola_TextChanged(object sender, EventArgs e)
+        private void botoCercaVideo_Click(object sender, EventArgs e) // Per obrir el fitxer vídeo/àudio i que es mostri la seva ruta a la textBox 
+        {
+            OpenFileDialog objFitxerObrir = new OpenFileDialog();
+
+            if (objFitxerObrir.ShowDialog() == /*System.Windows.Forms.*/DialogResult.OK) // Si troba el fitxer...
+            {
+                /*this.*/rutaFitxer.Text = objFitxerObrir.FileName;
+                ESTIMUL_DISPONIBLE = true;
+
+                TEXT_ENVIAR = "S'ha seleccionat l'estímul " + rutaFitxer.Text;
+                backgroundWorker1.RunWorkerAsync();
+             
+                
+                
+                //WindowsMediaPlayer1.URL = rutaFitxer.Text;
+                //WindowsMediaPlayer1.Ctlcontrols.play();
+                FRM2 = new Form2(rutaFitxer.Text);  // Només es pot fer PLAY. No es pot fer pausa ni res perquè no deixa prémer els botons del form1
+                //f.ShowDialog(); // No utilitzo aquest perquè sinó no deixa utilitzar el form1
+                FRM2.Show();
+
+            }
+        }
+
+        private void botoPlayVideo_Click(object sender, EventArgs e)
+        {
+            if (ESTIMUL_DISPONIBLE)
+            {
+
+                ATURA_PRIMER = false;
+
+                // Play (1r cop)
+                if (PRIMER_COP)
+                {
+                    PRIMER_COP = false;
+                    WindowsMediaPlayer1.URL = rutaFitxer.Text;
+                    WindowsMediaPlayer1.Ctlcontrols.play();
+                    botoPlayVideo.Text = "| |";
+                    TEXT_ENVIAR = "S'inicia l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
+                    backgroundWorker1.RunWorkerAsync();
+                    FRM2.PlayPrimerCop();
+                }
+                // Pausar
+                else if (REPRODUINTSE)
+                {
+                    WindowsMediaPlayer1.Ctlcontrols.pause();
+                    botoPlayVideo.Text = "▶";
+                    TEXT_ENVIAR = "Es pausa l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
+                    backgroundWorker1.RunWorkerAsync();
+                    FRM2.Pause();
+                }
+                // Reprendre
+                else
+                {
+                    WindowsMediaPlayer1.Ctlcontrols.play();
+                    botoPlayVideo.Text = "| |";
+                    TEXT_ENVIAR = "Es reprèn l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
+                    backgroundWorker1.RunWorkerAsync();
+                    FRM2.Play();
+                }
+
+                REPRODUINTSE = !REPRODUINTSE;                
+            }    
+            else
+            {
+                MessageBox.Show("Si us plau, seleccioni un estímul.");
+            }
+        }
+
+        // Atura
+        private void botoAturaVideo_Click(object sender, EventArgs e)
+        {
+            if (ESTIMUL_DISPONIBLE)
+            {    
+                if (ATURA_PRIMER == false)
+                {
+                    //COMPTADOR_VIDEO = 0;
+                    REPRODUINTSE = false;
+                    WindowsMediaPlayer1.Ctlcontrols.stop();
+                    botoPlayVideo.Text = "▶";
+                    TEXT_ENVIAR = "S'atura l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
+                    backgroundWorker1.RunWorkerAsync();
+                    FRM2.Stop();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Si us plau, seleccioni un estímul.");
+            }
+        }
+
+        private void rutaFitxer_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        private void WindowsMediaPlayer1_Enter(object sender, EventArgs e)
+        {
 
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+           
+        }
+
+        private void QuadernBitacoles_richTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }     
     }
 }

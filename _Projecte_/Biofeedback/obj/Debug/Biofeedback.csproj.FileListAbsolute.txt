@@ -8,3 +8,9 @@ C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeed
 C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.exe
 C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.pdb
 C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.csprojAssemblyReference.cache
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\bin\Debug\Interop.WMPLib.dll
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Interop.WMPLib.dll
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.csproj.ResolveComReference.cache
+C:\Users\Usuària\Documents\_UAB_\_TFG_\_Projecte_\Biofeedback\obj\Debug\Biofeedback.Form2.resources
