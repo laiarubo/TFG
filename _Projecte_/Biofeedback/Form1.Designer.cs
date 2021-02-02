@@ -52,6 +52,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.HotPink;
             this.label1.Location = new System.Drawing.Point(27, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
@@ -62,6 +63,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.HotPink;
             this.label2.Location = new System.Drawing.Point(27, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 13);
@@ -75,7 +77,7 @@
             // 
             // NotesTerapeuta
             // 
-            this.NotesTerapeuta.Location = new System.Drawing.Point(49, 577);
+            this.NotesTerapeuta.Location = new System.Drawing.Point(49, 591);
             this.NotesTerapeuta.Name = "NotesTerapeuta";
             this.NotesTerapeuta.Size = new System.Drawing.Size(464, 20);
             this.NotesTerapeuta.TabIndex = 3;
@@ -109,7 +111,7 @@
             // WindowsMediaPlayer1
             // 
             this.WindowsMediaPlayer1.Enabled = true;
-            this.WindowsMediaPlayer1.Location = new System.Drawing.Point(604, 358);
+            this.WindowsMediaPlayer1.Location = new System.Drawing.Point(604, 341);
             this.WindowsMediaPlayer1.Name = "WindowsMediaPlayer1";
             this.WindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("WindowsMediaPlayer1.OcxState")));
             this.WindowsMediaPlayer1.Size = new System.Drawing.Size(439, 236);
@@ -119,7 +121,7 @@
             // rutaFitxer
             // 
             this.rutaFitxer.BackColor = System.Drawing.Color.White;
-            this.rutaFitxer.Location = new System.Drawing.Point(685, 332);
+            this.rutaFitxer.Location = new System.Drawing.Point(685, 315);
             this.rutaFitxer.Name = "rutaFitxer";
             this.rutaFitxer.ReadOnly = true;
             this.rutaFitxer.Size = new System.Drawing.Size(358, 20);
@@ -129,7 +131,8 @@
             // botoCercaVideo
             // 
             this.botoCercaVideo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.botoCercaVideo.Location = new System.Drawing.Point(604, 329);
+            this.botoCercaVideo.ForeColor = System.Drawing.Color.DeepPink;
+            this.botoCercaVideo.Location = new System.Drawing.Point(604, 312);
             this.botoCercaVideo.Name = "botoCercaVideo";
             this.botoCercaVideo.Size = new System.Drawing.Size(75, 23);
             this.botoCercaVideo.TabIndex = 10;
@@ -140,8 +143,8 @@
             // botoPlayVideo
             // 
             this.botoPlayVideo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.botoPlayVideo.ForeColor = System.Drawing.Color.Blue;
-            this.botoPlayVideo.Location = new System.Drawing.Point(608, 560);
+            this.botoPlayVideo.ForeColor = System.Drawing.Color.HotPink;
+            this.botoPlayVideo.Location = new System.Drawing.Point(772, 583);
             this.botoPlayVideo.Name = "botoPlayVideo";
             this.botoPlayVideo.Size = new System.Drawing.Size(50, 34);
             this.botoPlayVideo.TabIndex = 11;
@@ -157,8 +160,8 @@
             // botoAturaVideo
             // 
             this.botoAturaVideo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.botoAturaVideo.ForeColor = System.Drawing.Color.Blue;
-            this.botoAturaVideo.Location = new System.Drawing.Point(660, 560);
+            this.botoAturaVideo.ForeColor = System.Drawing.Color.HotPink;
+            this.botoAturaVideo.Location = new System.Drawing.Point(828, 583);
             this.botoAturaVideo.Name = "botoAturaVideo";
             this.botoAturaVideo.Size = new System.Drawing.Size(50, 34);
             this.botoAturaVideo.TabIndex = 12;
@@ -169,11 +172,11 @@
             // QuadernBitacoles_richTextBox
             // 
             this.QuadernBitacoles_richTextBox.BackColor = System.Drawing.Color.White;
-            this.QuadernBitacoles_richTextBox.Location = new System.Drawing.Point(49, 332);
+            this.QuadernBitacoles_richTextBox.Location = new System.Drawing.Point(49, 315);
             this.QuadernBitacoles_richTextBox.Name = "QuadernBitacoles_richTextBox";
             this.QuadernBitacoles_richTextBox.ReadOnly = true;
             this.QuadernBitacoles_richTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.QuadernBitacoles_richTextBox.Size = new System.Drawing.Size(512, 235);
+            this.QuadernBitacoles_richTextBox.Size = new System.Drawing.Size(512, 262);
             this.QuadernBitacoles_richTextBox.TabIndex = 13;
             this.QuadernBitacoles_richTextBox.Text = "";
             this.QuadernBitacoles_richTextBox.TextChanged += new System.EventHandler(this.QuadernBitacoles_richTextBox_TextChanged);
@@ -182,7 +185,8 @@
             // 
             this.BotoEnvia.BackColor = System.Drawing.Color.Transparent;
             this.BotoEnvia.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BotoEnvia.Location = new System.Drawing.Point(519, 574);
+            this.BotoEnvia.ForeColor = System.Drawing.Color.DeepPink;
+            this.BotoEnvia.Location = new System.Drawing.Point(519, 588);
             this.BotoEnvia.Name = "BotoEnvia";
             this.BotoEnvia.Size = new System.Drawing.Size(42, 23);
             this.BotoEnvia.TabIndex = 14;
@@ -204,7 +208,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1116, 626);
+            this.ClientSize = new System.Drawing.Size(1116, 637);
             this.Controls.Add(this.elementHost1);
             this.Controls.Add(this.BotoEnvia);
             this.Controls.Add(this.QuadernBitacoles_richTextBox);

@@ -17,6 +17,7 @@ namespace Biofeedback
         {
             InitializeComponent();
             RUTA = rutaForm1;
+            WindowsMediaPlayer2.uiMode = "none"; // Amaga els controls del WindowsMediaPlayer
         }
 
         public void PlayPrimerCop()
@@ -25,17 +26,17 @@ namespace Biofeedback
             WindowsMediaPlayer2.Ctlcontrols.play();
         }
 
-        public void Play()
+        public void PlayVideo()
         {
             WindowsMediaPlayer2.Ctlcontrols.play();
         }
 
-        public void Pause()
+        public void PauseVideo()
         {
             WindowsMediaPlayer2.Ctlcontrols.pause();
         }
 
-        public void Stop()
+        public void StopVideo()
         {
             WindowsMediaPlayer2.Ctlcontrols.stop();
         }

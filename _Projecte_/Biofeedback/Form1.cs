@@ -79,6 +79,8 @@ namespace Biofeedback
             timer1.Start();
             label1.Text = DateTime.Now.ToShortDateString();
             label2.Text = DateTime.Now.ToLongTimeString();
+
+            WindowsMediaPlayer1.uiMode = "none"; // Amaga els controls del WindowsMediaPlayer
         }
       
         private void timer1_Tick(object sender, EventArgs e) // Perquè s'actualitzin els segons de l'hora
@@ -151,7 +153,7 @@ namespace Biofeedback
             {
                 // Posar tota la línia del terapeuta de color blau
                 QuadernBitacoles_richTextBox.Select(match.Index, match.Length);
-                QuadernBitacoles_richTextBox.SelectionColor = Color.Blue;
+                QuadernBitacoles_richTextBox.SelectionColor = Color.HotPink;
 
                 // Posar "Nota:" en negreta
                 Match match2 = Regex.Match(match.Value, "Nota:");
@@ -222,6 +224,7 @@ namespace Biofeedback
                     PRIMER_COP = false;
                     WindowsMediaPlayer1.URL = rutaFitxer.Text;
                     WindowsMediaPlayer1.Ctlcontrols.play();
+                    WindowsMediaPlayer1.settings.volume = 0;
                     botoPlayVideo.Text = "| |";
                     TEXT_ENVIAR = "S'inicia l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
                     backgroundWorker1.RunWorkerAsync();
@@ -234,7 +237,7 @@ namespace Biofeedback
                     botoPlayVideo.Text = "▶";
                     TEXT_ENVIAR = "Es pausa l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
                     backgroundWorker1.RunWorkerAsync();
-                    FRM2.Pause();
+                    FRM2.PauseVideo();
                 }
                 // Reprendre
                 else
@@ -243,7 +246,7 @@ namespace Biofeedback
                     botoPlayVideo.Text = "| |";
                     TEXT_ENVIAR = "Es reprèn l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
                     backgroundWorker1.RunWorkerAsync();
-                    FRM2.Play();
+                    FRM2.PlayVideo();
                 }
 
                 REPRODUINTSE = !REPRODUINTSE;                
@@ -267,7 +270,7 @@ namespace Biofeedback
                     botoPlayVideo.Text = "▶";
                     TEXT_ENVIAR = "S'atura l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
                     backgroundWorker1.RunWorkerAsync();
-                    FRM2.Stop();
+                    FRM2.StopVideo();
                 }
             }
             else
@@ -294,6 +297,7 @@ namespace Biofeedback
         private void QuadernBitacoles_richTextBox_TextChanged(object sender, EventArgs e)
         {
 
-        }     
+        }
+
     }
 }
