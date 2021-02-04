@@ -13,12 +13,16 @@ using System.Net.Sockets;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
+using ContingutBD;
 
 namespace Biofeedback
 {
     public partial class Form1 : Form
     {
         // ======= VARIABLES GLOBALS =======
+
+        // Per a la comunicació amb la BD
+        List<QuadernModel> QUADERN_BD = new List<QuadernModel>();
 
         // Per a la connexió PC - Arduino
         bool CONNECTAT = false;
@@ -28,12 +32,10 @@ namespace Biofeedback
         // Per al quadern de bitàcola
         public StreamReader STR;
         public StreamWriter STW;
-        public string TEXT_REBRE;
         public string TEXT_ENVIAR;
 
         // Reproducció del vídeo/àudio (vista terapeuta)
         bool ESTIMUL_DISPONIBLE = false;
-        int COMPTADOR_VIDEO = 0;
         bool ATURA_PRIMER = true;
 
         // Reproducció del vídeo/àudio (vista pacient)
@@ -81,6 +83,9 @@ namespace Biofeedback
             label2.Text = DateTime.Now.ToLongTimeString();
 
             WindowsMediaPlayer1.uiMode = "none"; // Amaga els controls del WindowsMediaPlayer
+
+            // Carregar les dades a la BD
+            QUADERN_BD = SqliteDataAccess.LoadQuadern();
         }
       
         private void timer1_Tick(object sender, EventArgs e) // Perquè s'actualitzin els segons de l'hora
@@ -136,6 +141,10 @@ namespace Biofeedback
                     QuadernBitacoles_richTextBox.AppendText(DateTime.Now.ToLongTimeString() + "    " + TEXT_ENVIAR + Environment.NewLine);
                     PintarNotesDeBlau();
                 }));
+
+                QuadernModel q = new QuadernModel();
+                q.Missatge = DateTime.Now.ToLongTimeString() + "    " + TEXT_ENVIAR;
+                SqliteDataAccess.DesaQuadern(q);
             }
             else
             {
@@ -148,7 +157,6 @@ namespace Biofeedback
             MatchCollection matches = Regex.Matches(QuadernBitacoles_richTextBox.Text, ".*Nota:.*\n");
 
             //Apply color to all matching text
-            int matchCount = 0;
             foreach (Match match in matches)
             {
                 // Posar tota la línia del terapeuta de color blau

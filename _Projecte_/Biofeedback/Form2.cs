@@ -40,5 +40,10 @@ namespace Biofeedback
         {
             WindowsMediaPlayer2.Ctlcontrols.stop();
         }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

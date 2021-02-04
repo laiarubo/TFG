@@ -52,6 +52,7 @@
             this.Controls.Add(this.WindowsMediaPlayer2);
             this.ForeColor = System.Drawing.Color.Blue;
             this.Name = "Form2";
+            this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.WindowsMediaPlayer2)).EndInit();
             this.ResumeLayout(false);
 
