@@ -25,9 +25,7 @@ namespace Biofeedback
         List<QuadernModel> QUADERN_BD = new List<QuadernModel>();
 
         // Per a la connexió PC - Arduino
-        bool CONNECTAT = false;
         string[] PORTS;
-        SerialPort PORT;
 
         // Per al quadern de bitàcola
         public StreamReader STR;
@@ -62,10 +60,11 @@ namespace Biofeedback
             }
 
             // Connexió PC - Arduino automàtica
-            if (!CONNECTAT)
-            {
-                connectarArduino();
-            }
+            if (comboBox1.Items.Count > 0) // Si hi ha algun port disponible, que agafi el primer
+                comboBox1.SelectedIndex = 0;
+
+            if (!Connexio_Singleton.getInstance().portObert())
+                MessageBox.Show("No s'ha pogut establir la connexió amb l'Arduino.","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
 
             backgroundWorker1.WorkerSupportsCancellation = true; 
         }
@@ -85,25 +84,13 @@ namespace Biofeedback
             WindowsMediaPlayer1.uiMode = "none"; // Amaga els controls del WindowsMediaPlayer
 
             // Carregar les dades a la BD
-            QUADERN_BD = SqliteDataAccess.LoadQuadern();
+       //     QUADERN_BD = SqliteDataAccess.LoadQuadern();
         }
       
         private void timer1_Tick(object sender, EventArgs e) // Perquè s'actualitzin els segons de l'hora
         {
             label2.Text = DateTime.Now.ToLongTimeString();
             timer1.Start();
-        }
-
-        private void connectarArduino()
-        {
-            CONNECTAT = true;
-            string portSeleccionat = comboBox1.GetItemText(comboBox1.SelectedItem);
-
-            // public SerialPort (string portName, int baudRate, System.IO.Ports.Parity parity);
-            PORT = new SerialPort(portSeleccionat, 9600, Parity.None, 8, StopBits.One);
-
-            PORT.Open(); // S'activa el port COM
-            PORT.Write("#INICI\n");
         }
 
         private void NotesTerapeuta_TextChanged(object sender, EventArgs e)
@@ -113,27 +100,23 @@ namespace Biofeedback
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Connexio_Singleton.getInstance().ConnectarArduino(comboBox1.Items[comboBox1.SelectedIndex].ToString());
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (CONNECTAT)
+            if (Connexio_Singleton.getInstance().portObert())
             {
                 if (checkBox1.Checked)
-                {
-                    PORT.Write("#LED_ON\n");
-                }
+                   Connexio_Singleton.getInstance().writeCommand("#LED_ON\n");
                 else
-                {
-                    PORT.Write("#LED_OFF\n");
-                }
+                    Connexio_Singleton.getInstance().writeCommand("#LED_OFF\n");
             }
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            if (CONNECTAT)
+            if (Connexio_Singleton.getInstance().portObert())
             {
 
                 QuadernBitacoles_richTextBox.Invoke(new MethodInvoker(delegate ()
@@ -142,9 +125,9 @@ namespace Biofeedback
                     PintarNotesDeBlau();
                 }));
 
-                QuadernModel q = new QuadernModel();
-                q.Missatge = DateTime.Now.ToLongTimeString() + "    " + TEXT_ENVIAR;
-                SqliteDataAccess.DesaQuadern(q);
+                //QuadernModel q = new QuadernModel();
+                //q.Missatge = DateTime.Now.ToLongTimeString() + "    " + TEXT_ENVIAR;
+                //SqliteDataAccess.DesaQuadern(q);
             }
             else
             {
@@ -172,7 +155,7 @@ namespace Biofeedback
         private void BotoEnvia_Click(object sender, EventArgs e)
         {
 
-            if (CONNECTAT)
+            if (Connexio_Singleton.getInstance().portObert())
             {
                 if (NotesTerapeuta.Text != "")
                 {
@@ -307,5 +290,14 @@ namespace Biofeedback
 
         }
 
+        private void elementHost1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
+        {
+
+        }
+
+        private void liveCharts_UserControl1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -37,7 +37,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.WindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.rutaFitxer = new System.Windows.Forms.TextBox();
             this.botoCercaVideo = new System.Windows.Forms.Button();
             this.botoPlayVideo = new System.Windows.Forms.Button();
@@ -45,7 +44,8 @@
             this.botoAturaVideo = new System.Windows.Forms.Button();
             this.QuadernBitacoles_richTextBox = new System.Windows.Forms.RichTextBox();
             this.BotoEnvia = new System.Windows.Forms.Button();
-            this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+            this.WindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.grafiques_UserControl1 = new Biofeedback.Grafiques_UserControl();
             ((System.ComponentModel.ISupportInitialize)(this.WindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.HotPink;
-            this.label1.Location = new System.Drawing.Point(27, 13);
+            this.label1.Location = new System.Drawing.Point(12, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 0;
@@ -64,7 +64,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.HotPink;
-            this.label2.Location = new System.Drawing.Point(27, 39);
+            this.label2.Location = new System.Drawing.Point(12, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 1;
@@ -77,7 +77,7 @@
             // 
             // NotesTerapeuta
             // 
-            this.NotesTerapeuta.Location = new System.Drawing.Point(49, 591);
+            this.NotesTerapeuta.Location = new System.Drawing.Point(181, 849);
             this.NotesTerapeuta.Name = "NotesTerapeuta";
             this.NotesTerapeuta.Size = new System.Drawing.Size(464, 20);
             this.NotesTerapeuta.TabIndex = 3;
@@ -87,16 +87,16 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(179, 10);
+            this.comboBox1.Location = new System.Drawing.Point(15, 65);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.Size = new System.Drawing.Size(70, 21);
             this.comboBox1.TabIndex = 5;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(179, 62);
+            this.checkBox1.Location = new System.Drawing.Point(15, 92);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(70, 17);
             this.checkBox1.TabIndex = 6;
@@ -108,20 +108,10 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // WindowsMediaPlayer1
-            // 
-            this.WindowsMediaPlayer1.Enabled = true;
-            this.WindowsMediaPlayer1.Location = new System.Drawing.Point(604, 341);
-            this.WindowsMediaPlayer1.Name = "WindowsMediaPlayer1";
-            this.WindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("WindowsMediaPlayer1.OcxState")));
-            this.WindowsMediaPlayer1.Size = new System.Drawing.Size(439, 236);
-            this.WindowsMediaPlayer1.TabIndex = 8;
-            this.WindowsMediaPlayer1.Enter += new System.EventHandler(this.WindowsMediaPlayer1_Enter);
-            // 
             // rutaFitxer
             // 
             this.rutaFitxer.BackColor = System.Drawing.Color.White;
-            this.rutaFitxer.Location = new System.Drawing.Point(685, 315);
+            this.rutaFitxer.Location = new System.Drawing.Point(817, 573);
             this.rutaFitxer.Name = "rutaFitxer";
             this.rutaFitxer.ReadOnly = true;
             this.rutaFitxer.Size = new System.Drawing.Size(358, 20);
@@ -132,7 +122,7 @@
             // 
             this.botoCercaVideo.Cursor = System.Windows.Forms.Cursors.Default;
             this.botoCercaVideo.ForeColor = System.Drawing.Color.DeepPink;
-            this.botoCercaVideo.Location = new System.Drawing.Point(604, 312);
+            this.botoCercaVideo.Location = new System.Drawing.Point(736, 570);
             this.botoCercaVideo.Name = "botoCercaVideo";
             this.botoCercaVideo.Size = new System.Drawing.Size(75, 23);
             this.botoCercaVideo.TabIndex = 10;
@@ -144,7 +134,7 @@
             // 
             this.botoPlayVideo.Cursor = System.Windows.Forms.Cursors.Default;
             this.botoPlayVideo.ForeColor = System.Drawing.Color.HotPink;
-            this.botoPlayVideo.Location = new System.Drawing.Point(772, 583);
+            this.botoPlayVideo.Location = new System.Drawing.Point(904, 841);
             this.botoPlayVideo.Name = "botoPlayVideo";
             this.botoPlayVideo.Size = new System.Drawing.Size(50, 34);
             this.botoPlayVideo.TabIndex = 11;
@@ -161,7 +151,7 @@
             // 
             this.botoAturaVideo.Cursor = System.Windows.Forms.Cursors.Default;
             this.botoAturaVideo.ForeColor = System.Drawing.Color.HotPink;
-            this.botoAturaVideo.Location = new System.Drawing.Point(828, 583);
+            this.botoAturaVideo.Location = new System.Drawing.Point(960, 841);
             this.botoAturaVideo.Name = "botoAturaVideo";
             this.botoAturaVideo.Size = new System.Drawing.Size(50, 34);
             this.botoAturaVideo.TabIndex = 12;
@@ -172,7 +162,7 @@
             // QuadernBitacoles_richTextBox
             // 
             this.QuadernBitacoles_richTextBox.BackColor = System.Drawing.Color.White;
-            this.QuadernBitacoles_richTextBox.Location = new System.Drawing.Point(49, 315);
+            this.QuadernBitacoles_richTextBox.Location = new System.Drawing.Point(181, 573);
             this.QuadernBitacoles_richTextBox.Name = "QuadernBitacoles_richTextBox";
             this.QuadernBitacoles_richTextBox.ReadOnly = true;
             this.QuadernBitacoles_richTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -186,7 +176,7 @@
             this.BotoEnvia.BackColor = System.Drawing.Color.Transparent;
             this.BotoEnvia.Cursor = System.Windows.Forms.Cursors.Default;
             this.BotoEnvia.ForeColor = System.Drawing.Color.DeepPink;
-            this.BotoEnvia.Location = new System.Drawing.Point(519, 588);
+            this.BotoEnvia.Location = new System.Drawing.Point(651, 846);
             this.BotoEnvia.Name = "BotoEnvia";
             this.BotoEnvia.Size = new System.Drawing.Size(42, 23);
             this.BotoEnvia.TabIndex = 14;
@@ -194,22 +184,31 @@
             this.BotoEnvia.UseVisualStyleBackColor = false;
             this.BotoEnvia.Click += new System.EventHandler(this.BotoEnvia_Click);
             // 
-            // elementHost1
+            // WindowsMediaPlayer1
             // 
-            this.elementHost1.Location = new System.Drawing.Point(604, 167);
-            this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(200, 100);
-            this.elementHost1.TabIndex = 17;
-            this.elementHost1.Text = "elementHost1";
-            this.elementHost1.Child = null;
+            this.WindowsMediaPlayer1.Enabled = true;
+            this.WindowsMediaPlayer1.Location = new System.Drawing.Point(736, 599);
+            this.WindowsMediaPlayer1.Name = "WindowsMediaPlayer1";
+            this.WindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("WindowsMediaPlayer1.OcxState")));
+            this.WindowsMediaPlayer1.Size = new System.Drawing.Size(439, 236);
+            this.WindowsMediaPlayer1.TabIndex = 8;
+            this.WindowsMediaPlayer1.Enter += new System.EventHandler(this.WindowsMediaPlayer1_Enter);
+            // 
+            // grafiques_UserControl1
+            // 
+            this.grafiques_UserControl1.Location = new System.Drawing.Point(149, 5);
+            this.grafiques_UserControl1.Name = "grafiques_UserControl1";
+            this.grafiques_UserControl1.R = ((System.Random)(resources.GetObject("grafiques_UserControl1.R")));
+            this.grafiques_UserControl1.Size = new System.Drawing.Size(1144, 515);
+            this.grafiques_UserControl1.TabIndex = 15;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1116, 637);
-            this.Controls.Add(this.elementHost1);
+            this.ClientSize = new System.Drawing.Size(1353, 880);
+            this.Controls.Add(this.grafiques_UserControl1);
             this.Controls.Add(this.BotoEnvia);
             this.Controls.Add(this.QuadernBitacoles_richTextBox);
             this.Controls.Add(this.botoAturaVideo);
@@ -247,7 +246,7 @@
         public System.Windows.Forms.Button botoPlayVideo;
         private System.Windows.Forms.Button BotoEnvia;
         public System.Windows.Forms.Button botoAturaVideo;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private Grafiques_UserControl grafiques_UserControl1;
     }
 }
 
