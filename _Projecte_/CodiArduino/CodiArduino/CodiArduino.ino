@@ -1,16 +1,19 @@
 #define PIN_LED 13
 
-// TASCA 1 - REBRE ORDRES
+// TASCA 1 = REBRE ORDRES
 String ENTRADA = ""; // Agafa les dades d'entrada
 String COMANDA = ""; // Agafa la comanda de les dades d'entrada
 boolean STRING_COMPLET = false;
 boolean CONNECTAT = false;
 
-// TASCA 2 - CALCULAR VALOR_ALEATORI CADA SEGON
+// TASCA 2 = CALCULAR VALOR_ALEATORI CADA SEGON
+unsigned long PREVIOUS_TIME1 = millis();
 unsigned long PREVIOUS_TIME2 = millis();
 unsigned long PREVIOUS_TIME3 = millis();
+long TIME_INTERVAL1 = 500; // mig segon
 long TIME_INTERVAL2 = 1000; // 1 segon
 long TIME_INTERVAL3 = 2000; // 2 segons
+long VALOR_ALEATORI1;
 long VALOR_ALEATORI2;
 long VALOR_ALEATORI3;
 
@@ -29,8 +32,9 @@ void setup() {
 
 
 void loop() {  
-
+  //
   //  TASCA 1
+  //
   if (STRING_COMPLET) {
     STRING_COMPLET = false;
 
@@ -49,10 +53,19 @@ void loop() {
 
     ENTRADA = "";    
   }
-
+  //
   // TASCA 2 
-
-  // Miograma
+  //
+    // Cardiograma
+  unsigned long currentTime1 = millis();
+  if (currentTime1 - PREVIOUS_TIME1 > TIME_INTERVAL1)
+  {
+    PREVIOUS_TIME1 = currentTime1;
+    VALOR_ALEATORI1 = random(1,11); // Valor enter entre 1 i 10
+    String id_cardiograma = "1|";
+    Serial.println(id_cardiograma+=VALOR_ALEATORI1);   
+  }
+    // Miograma
   unsigned long currentTime2 = millis();
   if (currentTime2 - PREVIOUS_TIME2 > TIME_INTERVAL2)
   {
@@ -62,7 +75,7 @@ void loop() {
     Serial.println(id_miograma+=VALOR_ALEATORI2);   
   }
 
-  // Resposta galvànica
+    // Resposta galvànica
   unsigned long currentTime3 = millis();
   if (currentTime3 - PREVIOUS_TIME3 > TIME_INTERVAL3)
   {

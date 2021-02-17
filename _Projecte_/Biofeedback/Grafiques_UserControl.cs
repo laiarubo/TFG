@@ -25,33 +25,28 @@ namespace Biofeedback
         private ChartValues<Miograma> dadesMiograma { get; set; }
         private ChartValues<RespostaGalvanica> dadesRG { get; set; }
 
-        float maxim_mio_actual = 0;
-        float maxim_rg_actual = 0;
-
+        float minim_cardio_actual = 9999;
         float minim_mio_actual = 9999;
         float minim_rg_actual = 9999;
 
+        float maxim_cardio_actual = 0;
+        float maxim_mio_actual = 0;
+        float maxim_rg_actual = 0;
+
+        List<float> lectures_cardio = new List<float>();
         List<float> lectures_mio = new List<float>();
         List<float> lectures_rg = new List<float>();
-
 
         public Grafiques_UserControl()
         {
             InitializeComponent();
 
             construirCardiograma();
-
             construirMiograma();
-
             construirRespostaGalvanica();
-
-            // S'enllaça l'event de Connexio_Singleton amb LivaCharts_UserControl
-            // S'ha de recollir l'event riseDada
-           // Connexio_Singleton.getInstance().nouEventMiograma += mostraValorsArduino;
-
         }
 
-        private void construirCardiograma()
+        private void construirCardiograma_tmp()
         {
             var mapper = Mappers.Xy<Cardiograma>()
             .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
@@ -83,7 +78,7 @@ namespace Biofeedback
 
             SetAxisLimits(System.DateTime.Now);
 
-            //The next code simulates data changes every 500 ms
+            //The next code simulates data changes every 1 second
             Timer = new Timer
             {
                 Interval = 1000
@@ -91,6 +86,40 @@ namespace Biofeedback
             Timer.Tick += TimerOnTick;
             R = new Random();
             Timer.Start();
+        }
+
+        private void construirCardiograma()
+        {
+            var mapper = Mappers.Xy<Cardiograma>()
+            .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
+            .Y(model => model.Value);           //use the value property as Y
+
+            //lets save the mapper globally.
+            Charting.For<Cardiograma>(mapper);
+
+            //the dadesMiograma property will store our values array
+            dadesCardiograma = new ChartValues<Cardiograma>();
+            cardiograma.Series = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Values = dadesCardiograma,
+                    PointGeometrySize = 18,
+                    StrokeThickness = 4
+                }
+            };
+            cardiograma.AxisX.Add(new Axis
+            {
+                DisableAnimations = true,
+                LabelFormatter = value => new System.DateTime((long)Math.Abs(value)).ToString("mm:ss"),
+                Separator = new Separator
+                {
+                    Step = TimeSpan.FromSeconds(1).Ticks
+                }
+            });
+
+            // S'enllaça l'event de Connexio_Singleton amb LivaCharts_UserControl. S'ha de recollir l'event riseDada
+            Connexio_Singleton.getInstance().nouEventCardiograma += mostraValorsArduinoCardio;
         }
 
         private void construirMiograma()
@@ -123,13 +152,8 @@ namespace Biofeedback
                 }
             });
 
-            //SetAxisLimitsMiograma(System.DateTime.Now);
-
             // S'enllaça l'event de Connexio_Singleton amb LivaCharts_UserControl. S'ha de recollir l'event riseDada
-            Connexio_Singleton.getInstance().nouEventMiograma += mostraValorsArduinoMiograma;
-
-
-
+            Connexio_Singleton.getInstance().nouEventMiograma += mostraValorsArduinoMio;
         }
 
         private void construirRespostaGalvanica()
@@ -163,12 +187,43 @@ namespace Biofeedback
                 }
             });
 
-
             // S'enllaça l'event de Connexio_Singleton amb LivaCharts_UserControl. S'ha de recollir l'event riseDada
             Connexio_Singleton.getInstance().nouEventRespostaGalvanica += mostraValorsArduinoRG;
         }
 
-        private void mostraValorsArduinoMiograma(string s)
+        private void mostraValorsArduinoCardio(string s)
+        {
+            var now = System.DateTime.Now;
+            double conversio;
+            double.TryParse(s, out conversio);
+
+            dadesCardiograma.Add(new Cardiograma
+            {
+                DateTime = now,
+                Value = conversio
+            });
+
+            // Perquè surtin 8 puntets al cardiograma (no fa res!)
+            if (dadesCardiograma.Count > 20) dadesCardiograma.RemoveAt(0);
+
+            lecturaCardio.Invoke((MethodInvoker)(() => lecturaCardio.Text = s)); // Aquest MothodInvoker evita que la interfície sigui cridada per un thread 
+
+            SetAxisLimitsCardio(System.DateTime.Now);
+
+            float max = getMaximCardio((float)conversio);
+            maxCardio.Invoke((MethodInvoker)(() => maxCardio.Text = max.ToString()));
+
+            float min = getMinimCardio((float)conversio);
+            minCardio.Invoke((MethodInvoker)(() => minCardio.Text = min.ToString()));
+
+            float mitjana = getMitjanaCardio((float)conversio);
+            mitjanaCardio.Invoke((MethodInvoker)(() => mitjanaCardio.Text = mitjana.ToString()));
+
+            float sd = getDesviacioEstandardCardio((float)conversio);
+            sdCardio.Invoke((MethodInvoker)(() => sdCardio.Text = sd.ToString()));
+        }
+
+        private void mostraValorsArduinoMio(string s)
         {
             var now = System.DateTime.Now;
             double conversio;
@@ -181,7 +236,7 @@ namespace Biofeedback
             });
 
             // Perquè surtin 8 puntets al miograma (no fa res!)
-            //if (dadesMiograma.Count > 8) dadesMiograma.RemoveAt(0);
+            if (dadesMiograma.Count > 20) dadesMiograma.RemoveAt(0);
 
             lecturaMio.Invoke((MethodInvoker)(() => lecturaMio.Text = s)); // Aquest MothodInvoker evita que la interfície sigui cridada per un thread 
 
@@ -193,17 +248,16 @@ namespace Biofeedback
             //SqliteDataAccess.DesaLecturesMio(valor);
 
             float max = getMaximMio((float)conversio);
-            lecturaMio.Invoke((MethodInvoker)(() => maxMio.Text = max.ToString()));
+            maxMio.Invoke((MethodInvoker)(() => maxMio.Text = max.ToString()));
 
             float min = getMinimMio((float)conversio);
-            lecturaMio.Invoke((MethodInvoker)(() => minMio.Text = min.ToString()));
+            minMio.Invoke((MethodInvoker)(() => minMio.Text = min.ToString()));
 
             float mitjana = getMitjanaMio((float)conversio);
-            lecturaMio.Invoke((MethodInvoker)(() => mitjanaMio.Text = mitjana.ToString()));
+            mitjanaMio.Invoke((MethodInvoker)(() => mitjanaMio.Text = mitjana.ToString()));
 
-            //float max = SqliteDataAccess.getMaximLecturesMio();
-
-            //maxMio.Invoke((MethodInvoker)(() => maxMio.Text = max.ToString()));
+            float sd = getDesviacioEstandardMio((float)conversio);
+            sdMio.Invoke((MethodInvoker)(() => sdMio.Text = sd.ToString()));
         }
 
         private void mostraValorsArduinoRG(string s)
@@ -219,26 +273,35 @@ namespace Biofeedback
             });
 
             // Perquè surtin 8 puntets a la resposta galvànica
-            //if (dadesRG.Count > 8) dadesRG.RemoveAt(0);
+            if (dadesRG.Count > 20) dadesRG.RemoveAt(0);
 
             lecturaRG.Invoke((MethodInvoker)(() => lecturaRG.Text = s));
 
             SetAxisLimitsRG(System.DateTime.Now);
 
             float max = getMaximRG((float)conversio);
-            lecturaRG.Invoke((MethodInvoker)(() => maxRG.Text = max.ToString()));
+            maxRG.Invoke((MethodInvoker)(() => maxRG.Text = max.ToString()));
 
             float min = getMinimRG((float)conversio);
-            lecturaMio.Invoke((MethodInvoker)(() => minRG.Text = min.ToString()));
+            minRG.Invoke((MethodInvoker)(() => minRG.Text = min.ToString()));
 
             float mitjana = getMitjanaRG((float)conversio);
-            lecturaMio.Invoke((MethodInvoker)(() => mitjanaRG.Text = mitjana.ToString()));
+            mitjanaRG.Invoke((MethodInvoker)(() => mitjanaRG.Text = mitjana.ToString()));
+
+            float sd = getDesviacioEstandardRG((float)conversio);
+            sdRG.Invoke((MethodInvoker)(() => sdRG.Text = sd.ToString()));
         }
 
         private void SetAxisLimits(System.DateTime now)
         {
             cardiograma.AxisX[0].MaxValue = now.Ticks + TimeSpan.FromSeconds(1).Ticks; // lets force the axis to be 100ms ahead. AQUEST NO M'INTERESSA PERQUÈ M'AGRADA QUE LA LÍNIA BLAVA OCUPI TOT L'ESPAI HORITZONTAL DE LA GRÀFICA
             cardiograma.AxisX[0].MinValue = now.Ticks - TimeSpan.FromSeconds(8).Ticks; //we only care about the last 8 seconds
+        }
+
+        private void SetAxisLimitsCardio(System.DateTime now)
+        {
+            //  cardiograma.Invoke((MethodInvoker)(() => cardiograma.AxisX[0].MaxValue = now.Ticks + TimeSpan.FromSeconds(1).Ticks)); // lets force the axis to be 100ms ahead
+            cardiograma.Invoke((MethodInvoker)(() => cardiograma.AxisX[0].MinValue = now.Ticks - TimeSpan.FromSeconds(7).Ticks)); //we only care about the last 8 seconds
         }
 
         private void SetAxisLimitsMiograma(System.DateTime now)
@@ -277,6 +340,13 @@ namespace Biofeedback
 
         }
 
+        private float getMaximCardio(float value)
+        {
+            if (value > maxim_cardio_actual)
+                maxim_cardio_actual = value;
+            return maxim_cardio_actual;
+        }
+
         private float getMaximMio(float value)
         {
             if (value > maxim_mio_actual)
@@ -291,6 +361,13 @@ namespace Biofeedback
             return maxim_rg_actual;
         }
 
+        private float getMinimCardio(float value)
+        {
+            if (value < minim_cardio_actual)
+                minim_cardio_actual = value;
+            return minim_cardio_actual;
+        }
+
         private float getMinimMio(float value)
         {
             if (value < minim_mio_actual)
@@ -303,6 +380,15 @@ namespace Biofeedback
             if (value < minim_rg_actual)
                 minim_rg_actual = value;
             return minim_rg_actual;
+        }
+
+        private float getMitjanaCardio(float valor)
+        {
+            lectures_cardio.Add(valor);
+            float suma = 0;
+            foreach (float lectura in lectures_cardio)
+                suma += lectura;
+            return (float)Math.Round(suma / lectures_cardio.Count, 2);
         }
 
         private float getMitjanaMio(float valor)
@@ -321,6 +407,30 @@ namespace Biofeedback
             foreach (float lectura in lectures_rg)
                 suma += lectura;
             return (float)Math.Round(suma / lectures_rg.Count, 2);
+        }
+
+        private float getDesviacioEstandardCardio(float valor)
+        {
+            float divident = (float)Math.Pow(valor - getMitjanaCardio(valor), 2);
+            float divisor = lectures_cardio.Count - 1;
+            float resultat = (float)Math.Sqrt(divident / divisor);
+            return (float)Math.Round(resultat, 2);
+        }
+
+        private float getDesviacioEstandardMio (float valor)
+        {
+            float divident = (float)Math.Pow(valor - getMitjanaMio(valor), 2);
+            float divisor = lectures_mio.Count - 1;
+            float resultat = (float)Math.Sqrt(divident / divisor);
+            return (float)Math.Round(resultat, 2);
+        }
+
+        private float getDesviacioEstandardRG(float valor)
+        {
+            float divident = (float)Math.Pow(valor - getMitjanaRG(valor), 2);
+            float divisor = lectures_rg.Count - 1;
+            float resultat = (float)Math.Sqrt(divident / divisor);
+            return (float) Math.Round(resultat, 2);
         }
     }
 }

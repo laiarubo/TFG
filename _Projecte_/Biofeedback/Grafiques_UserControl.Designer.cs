@@ -54,6 +54,9 @@ namespace Biofeedback
             this.mitjanaCardio = new System.Windows.Forms.Label();
             this.mitjanaMio = new System.Windows.Forms.Label();
             this.mitjanaRG = new System.Windows.Forms.Label();
+            this.sdCardio = new System.Windows.Forms.Label();
+            this.sdMio = new System.Windows.Forms.Label();
+            this.sdRG = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -165,7 +168,7 @@ namespace Biofeedback
             // 
             this.maxim.AutoSize = true;
             this.maxim.ForeColor = System.Drawing.Color.HotPink;
-            this.maxim.Location = new System.Drawing.Point(673, 35);
+            this.maxim.Location = new System.Drawing.Point(783, 35);
             this.maxim.Name = "maxim";
             this.maxim.Size = new System.Drawing.Size(42, 13);
             this.maxim.TabIndex = 16;
@@ -175,7 +178,7 @@ namespace Biofeedback
             // 
             this.minim.AutoSize = true;
             this.minim.ForeColor = System.Drawing.Color.HotPink;
-            this.minim.Location = new System.Drawing.Point(784, 35);
+            this.minim.Location = new System.Drawing.Point(689, 35);
             this.minim.Name = "minim";
             this.minim.Size = new System.Drawing.Size(39, 13);
             this.minim.TabIndex = 17;
@@ -205,7 +208,7 @@ namespace Biofeedback
             // 
             this.lecturaCardio.AutoSize = true;
             this.lecturaCardio.ForeColor = System.Drawing.Color.HotPink;
-            this.lecturaCardio.Location = new System.Drawing.Point(543, 150);
+            this.lecturaCardio.Location = new System.Drawing.Point(543, 160);
             this.lecturaCardio.Name = "lecturaCardio";
             this.lecturaCardio.Size = new System.Drawing.Size(69, 13);
             this.lecturaCardio.TabIndex = 20;
@@ -215,7 +218,7 @@ namespace Biofeedback
             // 
             this.lecturaMio.AutoSize = true;
             this.lecturaMio.ForeColor = System.Drawing.Color.HotPink;
-            this.lecturaMio.Location = new System.Drawing.Point(543, 318);
+            this.lecturaMio.Location = new System.Drawing.Point(543, 310);
             this.lecturaMio.Name = "lecturaMio";
             this.lecturaMio.Size = new System.Drawing.Size(56, 13);
             this.lecturaMio.TabIndex = 21;
@@ -235,7 +238,7 @@ namespace Biofeedback
             // 
             this.maxCardio.AutoSize = true;
             this.maxCardio.ForeColor = System.Drawing.Color.HotPink;
-            this.maxCardio.Location = new System.Drawing.Point(673, 150);
+            this.maxCardio.Location = new System.Drawing.Point(783, 160);
             this.maxCardio.Name = "maxCardio";
             this.maxCardio.Size = new System.Drawing.Size(56, 13);
             this.maxCardio.TabIndex = 23;
@@ -245,7 +248,7 @@ namespace Biofeedback
             // 
             this.maxMio.AutoSize = true;
             this.maxMio.ForeColor = System.Drawing.Color.HotPink;
-            this.maxMio.Location = new System.Drawing.Point(680, 318);
+            this.maxMio.Location = new System.Drawing.Point(783, 310);
             this.maxMio.Name = "maxMio";
             this.maxMio.Size = new System.Drawing.Size(43, 13);
             this.maxMio.TabIndex = 24;
@@ -255,7 +258,7 @@ namespace Biofeedback
             // 
             this.maxRG.AutoSize = true;
             this.maxRG.ForeColor = System.Drawing.Color.HotPink;
-            this.maxRG.Location = new System.Drawing.Point(680, 461);
+            this.maxRG.Location = new System.Drawing.Point(783, 461);
             this.maxRG.Name = "maxRG";
             this.maxRG.Size = new System.Drawing.Size(42, 13);
             this.maxRG.TabIndex = 25;
@@ -265,7 +268,7 @@ namespace Biofeedback
             // 
             this.minCardio.AutoSize = true;
             this.minCardio.ForeColor = System.Drawing.Color.HotPink;
-            this.minCardio.Location = new System.Drawing.Point(788, 150);
+            this.minCardio.Location = new System.Drawing.Point(689, 160);
             this.minCardio.Name = "minCardio";
             this.minCardio.Size = new System.Drawing.Size(53, 13);
             this.minCardio.TabIndex = 26;
@@ -275,7 +278,7 @@ namespace Biofeedback
             // 
             this.minMio.AutoSize = true;
             this.minMio.ForeColor = System.Drawing.Color.HotPink;
-            this.minMio.Location = new System.Drawing.Point(788, 318);
+            this.minMio.Location = new System.Drawing.Point(689, 310);
             this.minMio.Name = "minMio";
             this.minMio.Size = new System.Drawing.Size(40, 13);
             this.minMio.TabIndex = 27;
@@ -285,7 +288,7 @@ namespace Biofeedback
             // 
             this.minRG.AutoSize = true;
             this.minRG.ForeColor = System.Drawing.Color.HotPink;
-            this.minRG.Location = new System.Drawing.Point(788, 461);
+            this.minRG.Location = new System.Drawing.Point(689, 461);
             this.minRG.Name = "minRG";
             this.minRG.Size = new System.Drawing.Size(39, 13);
             this.minRG.TabIndex = 28;
@@ -295,7 +298,7 @@ namespace Biofeedback
             // 
             this.mitjanaCardio.AutoSize = true;
             this.mitjanaCardio.ForeColor = System.Drawing.Color.HotPink;
-            this.mitjanaCardio.Location = new System.Drawing.Point(874, 150);
+            this.mitjanaCardio.Location = new System.Drawing.Point(874, 160);
             this.mitjanaCardio.Name = "mitjanaCardio";
             this.mitjanaCardio.Size = new System.Drawing.Size(70, 13);
             this.mitjanaCardio.TabIndex = 29;
@@ -305,7 +308,7 @@ namespace Biofeedback
             // 
             this.mitjanaMio.AutoSize = true;
             this.mitjanaMio.ForeColor = System.Drawing.Color.HotPink;
-            this.mitjanaMio.Location = new System.Drawing.Point(874, 318);
+            this.mitjanaMio.Location = new System.Drawing.Point(874, 310);
             this.mitjanaMio.Name = "mitjanaMio";
             this.mitjanaMio.Size = new System.Drawing.Size(57, 13);
             this.mitjanaMio.TabIndex = 30;
@@ -321,10 +324,43 @@ namespace Biofeedback
             this.mitjanaRG.TabIndex = 31;
             this.mitjanaRG.Text = "mitjanaRG";
             // 
+            // sdCardio
+            // 
+            this.sdCardio.AutoSize = true;
+            this.sdCardio.ForeColor = System.Drawing.Color.HotPink;
+            this.sdCardio.Location = new System.Drawing.Point(973, 160);
+            this.sdCardio.Name = "sdCardio";
+            this.sdCardio.Size = new System.Drawing.Size(48, 13);
+            this.sdCardio.TabIndex = 32;
+            this.sdCardio.Text = "sdCardio";
+            // 
+            // sdMio
+            // 
+            this.sdMio.AutoSize = true;
+            this.sdMio.ForeColor = System.Drawing.Color.HotPink;
+            this.sdMio.Location = new System.Drawing.Point(973, 310);
+            this.sdMio.Name = "sdMio";
+            this.sdMio.Size = new System.Drawing.Size(35, 13);
+            this.sdMio.TabIndex = 33;
+            this.sdMio.Text = "sdMio";
+            // 
+            // sdRG
+            // 
+            this.sdRG.AutoSize = true;
+            this.sdRG.ForeColor = System.Drawing.Color.HotPink;
+            this.sdRG.Location = new System.Drawing.Point(973, 461);
+            this.sdRG.Name = "sdRG";
+            this.sdRG.Size = new System.Drawing.Size(34, 13);
+            this.sdRG.TabIndex = 34;
+            this.sdRG.Text = "sdRG";
+            // 
             // Grafiques_UserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.sdRG);
+            this.Controls.Add(this.sdMio);
+            this.Controls.Add(this.sdCardio);
             this.Controls.Add(this.mitjanaRG);
             this.Controls.Add(this.mitjanaMio);
             this.Controls.Add(this.mitjanaCardio);
@@ -345,7 +381,7 @@ namespace Biofeedback
             this.Controls.Add(this.lectures);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Grafiques_UserControl";
-            this.Size = new System.Drawing.Size(1130, 542);
+            this.Size = new System.Drawing.Size(1118, 542);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -380,5 +416,8 @@ namespace Biofeedback
         private System.Windows.Forms.Label mitjanaCardio;
         private System.Windows.Forms.Label mitjanaMio;
         private System.Windows.Forms.Label mitjanaRG;
+        private System.Windows.Forms.Label sdCardio;
+        private System.Windows.Forms.Label sdMio;
+        private System.Windows.Forms.Label sdRG;
     }
 }

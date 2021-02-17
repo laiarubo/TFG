@@ -18,7 +18,8 @@ namespace Biofeedback
 
         // Per rebre dades de l'arduino en forma d'event
         public delegate void EventData(string s); // delegate és un disparador (avisa a tothom que hi ha un nou string disponible)
-        public event EventData nouEventMiograma; // això és l'event de tipus EventData
+        public event EventData nouEventCardiograma; // això és l'event de tipus EventData
+        public event EventData nouEventMiograma; 
         public event EventData nouEventRespostaGalvanica;
 
         static Connexio_Singleton()
@@ -60,11 +61,13 @@ namespace Biofeedback
                 {
                     case "1":
                         // cridar nouEventCardiograma
+                        if (valorsArduino[1] != "" && valorsArduino[1] != "\r")
+                            nouEventCardiograma.Invoke(valorsArduino[1]); // Se li envia el valor
                         break;
                     case "2":
                         // cridar nouEventMiograma
                         if (valorsArduino[1] != "" && valorsArduino[1] != "\r")
-                            nouEventMiograma.Invoke(valorsArduino[1]); // Se li passa el valor
+                            nouEventMiograma.Invoke(valorsArduino[1]); 
                         break;
                     case "3":
                         // cridar nouEventRespostsaGalvanica
