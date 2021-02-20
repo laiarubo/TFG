@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bd.db")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/corvermell.png")]
 
 

@@ -45,7 +45,7 @@
             this.QuadernBitacoles_richTextBox = new System.Windows.Forms.RichTextBox();
             this.BotoEnvia = new System.Windows.Forms.Button();
             this.WindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
-            this.grafiques_UserControl1 = new Biofeedback.Grafiques_UserControl();
+            this.grafiques_UserControl1 = new Biofeedback.UserControl_Grafiques();
             ((System.ComponentModel.ISupportInitialize)(this.WindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,26 +120,30 @@
             // 
             // botoCercaVideo
             // 
+            this.botoCercaVideo.BackColor = System.Drawing.Color.GhostWhite;
             this.botoCercaVideo.Cursor = System.Windows.Forms.Cursors.Default;
-            this.botoCercaVideo.ForeColor = System.Drawing.Color.DeepPink;
+            this.botoCercaVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.botoCercaVideo.ForeColor = System.Drawing.Color.HotPink;
             this.botoCercaVideo.Location = new System.Drawing.Point(736, 570);
             this.botoCercaVideo.Name = "botoCercaVideo";
             this.botoCercaVideo.Size = new System.Drawing.Size(75, 23);
             this.botoCercaVideo.TabIndex = 10;
             this.botoCercaVideo.Text = "Navega...";
-            this.botoCercaVideo.UseVisualStyleBackColor = true;
+            this.botoCercaVideo.UseVisualStyleBackColor = false;
             this.botoCercaVideo.Click += new System.EventHandler(this.botoCercaVideo_Click);
             // 
             // botoPlayVideo
             // 
+            this.botoPlayVideo.BackColor = System.Drawing.Color.GhostWhite;
             this.botoPlayVideo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.botoPlayVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botoPlayVideo.ForeColor = System.Drawing.Color.HotPink;
             this.botoPlayVideo.Location = new System.Drawing.Point(904, 841);
             this.botoPlayVideo.Name = "botoPlayVideo";
             this.botoPlayVideo.Size = new System.Drawing.Size(50, 34);
             this.botoPlayVideo.TabIndex = 11;
             this.botoPlayVideo.Text = "▶";
-            this.botoPlayVideo.UseVisualStyleBackColor = true;
+            this.botoPlayVideo.UseVisualStyleBackColor = false;
             this.botoPlayVideo.Click += new System.EventHandler(this.botoPlayVideo_Click);
             // 
             // openFileDialog1
@@ -149,14 +153,16 @@
             // 
             // botoAturaVideo
             // 
+            this.botoAturaVideo.BackColor = System.Drawing.Color.GhostWhite;
             this.botoAturaVideo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.botoAturaVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botoAturaVideo.ForeColor = System.Drawing.Color.HotPink;
             this.botoAturaVideo.Location = new System.Drawing.Point(960, 841);
             this.botoAturaVideo.Name = "botoAturaVideo";
             this.botoAturaVideo.Size = new System.Drawing.Size(50, 34);
             this.botoAturaVideo.TabIndex = 12;
             this.botoAturaVideo.Text = "█";
-            this.botoAturaVideo.UseVisualStyleBackColor = true;
+            this.botoAturaVideo.UseVisualStyleBackColor = false;
             this.botoAturaVideo.Click += new System.EventHandler(this.botoAturaVideo_Click);
             // 
             // QuadernBitacoles_richTextBox
@@ -166,19 +172,20 @@
             this.QuadernBitacoles_richTextBox.Name = "QuadernBitacoles_richTextBox";
             this.QuadernBitacoles_richTextBox.ReadOnly = true;
             this.QuadernBitacoles_richTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.QuadernBitacoles_richTextBox.Size = new System.Drawing.Size(512, 262);
+            this.QuadernBitacoles_richTextBox.Size = new System.Drawing.Size(523, 262);
             this.QuadernBitacoles_richTextBox.TabIndex = 13;
             this.QuadernBitacoles_richTextBox.Text = "";
             this.QuadernBitacoles_richTextBox.TextChanged += new System.EventHandler(this.QuadernBitacoles_richTextBox_TextChanged);
             // 
             // BotoEnvia
             // 
-            this.BotoEnvia.BackColor = System.Drawing.Color.Transparent;
+            this.BotoEnvia.BackColor = System.Drawing.Color.GhostWhite;
             this.BotoEnvia.Cursor = System.Windows.Forms.Cursors.Default;
-            this.BotoEnvia.ForeColor = System.Drawing.Color.DeepPink;
+            this.BotoEnvia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BotoEnvia.ForeColor = System.Drawing.Color.HotPink;
             this.BotoEnvia.Location = new System.Drawing.Point(651, 846);
             this.BotoEnvia.Name = "BotoEnvia";
-            this.BotoEnvia.Size = new System.Drawing.Size(42, 23);
+            this.BotoEnvia.Size = new System.Drawing.Size(53, 23);
             this.BotoEnvia.TabIndex = 14;
             this.BotoEnvia.Text = "Envia";
             this.BotoEnvia.UseVisualStyleBackColor = false;
@@ -198,7 +205,7 @@
             // 
             this.grafiques_UserControl1.Location = new System.Drawing.Point(149, 5);
             this.grafiques_UserControl1.Name = "grafiques_UserControl1";
-            this.grafiques_UserControl1.R = ((System.Random)(resources.GetObject("grafiques_UserControl1.R")));
+            this.grafiques_UserControl1.R = null;
             this.grafiques_UserControl1.Size = new System.Drawing.Size(1144, 515);
             this.grafiques_UserControl1.TabIndex = 15;
             // 
@@ -246,7 +253,7 @@
         public System.Windows.Forms.Button botoPlayVideo;
         private System.Windows.Forms.Button BotoEnvia;
         public System.Windows.Forms.Button botoAturaVideo;
-        private Grafiques_UserControl grafiques_UserControl1;
+        private UserControl_Grafiques grafiques_UserControl1;
     }
 }
 

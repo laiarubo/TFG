@@ -114,4 +114,4 @@ C:\Users\Usuària\Documents\__UAB__\__TFG__\_Projecte_\Biofeedback\obj\Debug\Bio
 C:\Users\Usuària\Documents\__UAB__\__TFG__\_Projecte_\Biofeedback\obj\Debug\Biofeedback.csproj.CopyComplete
 C:\Users\Usuària\Documents\__UAB__\__TFG__\_Projecte_\Biofeedback\obj\Debug\Biofeedback.exe
 C:\Users\Usuària\Documents\__UAB__\__TFG__\_Projecte_\Biofeedback\obj\Debug\Biofeedback.pdb
-C:\Users\Usuària\Documents\__UAB__\__TFG__\_Projecte_\Biofeedback\obj\Debug\Biofeedback.Grafiques_UserControl.resources
+C:\Users\Usuària\Documents\__UAB__\__TFG__\_Projecte_\Biofeedback\obj\Debug\Biofeedback.UserControl_Grafiques.resources
