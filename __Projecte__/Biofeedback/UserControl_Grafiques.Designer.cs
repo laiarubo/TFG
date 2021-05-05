@@ -57,6 +57,9 @@ namespace Biofeedback
             this.sdCardio = new System.Windows.Forms.Label();
             this.sdMio = new System.Windows.Forms.Label();
             this.sdRG = new System.Windows.Forms.Label();
+            this.botoFinalitza = new System.Windows.Forms.Button();
+            this.botoInicia = new System.Windows.Forms.Button();
+            this.botoAnula = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,7 +74,7 @@ namespace Biofeedback
             this.tableLayoutPanel1.Controls.Add(this.respostaGalvanica, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.miograma, 0, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 77);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 127);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -147,7 +150,7 @@ namespace Biofeedback
             // 
             this.lectures.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lectures.ForeColor = System.Drawing.Color.HotPink;
-            this.lectures.Location = new System.Drawing.Point(542, 36);
+            this.lectures.Location = new System.Drawing.Point(540, 67);
             this.lectures.Name = "lectures";
             this.lectures.Size = new System.Drawing.Size(124, 13);
             this.lectures.TabIndex = 14;
@@ -159,7 +162,7 @@ namespace Biofeedback
             // 
             this.evolucio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.evolucio.ForeColor = System.Drawing.Color.HotPink;
-            this.evolucio.Location = new System.Drawing.Point(197, 36);
+            this.evolucio.Location = new System.Drawing.Point(158, 67);
             this.evolucio.Name = "evolucio";
             this.evolucio.Size = new System.Drawing.Size(128, 13);
             this.evolucio.TabIndex = 15;
@@ -170,7 +173,7 @@ namespace Biofeedback
             // 
             this.maxim.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maxim.ForeColor = System.Drawing.Color.HotPink;
-            this.maxim.Location = new System.Drawing.Point(770, 36);
+            this.maxim.Location = new System.Drawing.Point(768, 67);
             this.maxim.Name = "maxim";
             this.maxim.Size = new System.Drawing.Size(80, 13);
             this.maxim.TabIndex = 16;
@@ -181,7 +184,7 @@ namespace Biofeedback
             // 
             this.minim.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minim.ForeColor = System.Drawing.Color.HotPink;
-            this.minim.Location = new System.Drawing.Point(672, 36);
+            this.minim.Location = new System.Drawing.Point(670, 67);
             this.minim.Name = "minim";
             this.minim.Size = new System.Drawing.Size(92, 13);
             this.minim.TabIndex = 17;
@@ -192,7 +195,7 @@ namespace Biofeedback
             // 
             this.mitjana.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mitjana.ForeColor = System.Drawing.Color.HotPink;
-            this.mitjana.Location = new System.Drawing.Point(864, 36);
+            this.mitjana.Location = new System.Drawing.Point(862, 67);
             this.mitjana.Name = "mitjana";
             this.mitjana.Size = new System.Drawing.Size(120, 13);
             this.mitjana.TabIndex = 18;
@@ -203,7 +206,7 @@ namespace Biofeedback
             // 
             this.sd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sd.ForeColor = System.Drawing.Color.HotPink;
-            this.sd.Location = new System.Drawing.Point(1000, 16);
+            this.sd.Location = new System.Drawing.Point(998, 47);
             this.sd.Name = "sd";
             this.sd.Size = new System.Drawing.Size(90, 52);
             this.sd.TabIndex = 19;
@@ -214,7 +217,7 @@ namespace Biofeedback
             // 
             this.lecturaCardio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lecturaCardio.ForeColor = System.Drawing.Color.HotPink;
-            this.lecturaCardio.Location = new System.Drawing.Point(573, 124);
+            this.lecturaCardio.Location = new System.Drawing.Point(577, 185);
             this.lecturaCardio.Name = "lecturaCardio";
             this.lecturaCardio.Size = new System.Drawing.Size(69, 33);
             this.lecturaCardio.TabIndex = 20;
@@ -225,9 +228,9 @@ namespace Biofeedback
             // 
             this.lecturaMio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lecturaMio.ForeColor = System.Drawing.Color.HotPink;
-            this.lecturaMio.Location = new System.Drawing.Point(573, 265);
+            this.lecturaMio.Location = new System.Drawing.Point(577, 326);
             this.lecturaMio.Name = "lecturaMio";
-            this.lecturaMio.Size = new System.Drawing.Size(56, 33);
+            this.lecturaMio.Size = new System.Drawing.Size(87, 33);
             this.lecturaMio.TabIndex = 21;
             this.lecturaMio.Text = "lecturaMio";
             this.lecturaMio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -236,9 +239,9 @@ namespace Biofeedback
             // 
             this.lecturaRG.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lecturaRG.ForeColor = System.Drawing.Color.HotPink;
-            this.lecturaRG.Location = new System.Drawing.Point(573, 425);
+            this.lecturaRG.Location = new System.Drawing.Point(553, 486);
             this.lecturaRG.Name = "lecturaRG";
-            this.lecturaRG.Size = new System.Drawing.Size(55, 33);
+            this.lecturaRG.Size = new System.Drawing.Size(111, 33);
             this.lecturaRG.TabIndex = 22;
             this.lecturaRG.Text = "lecturaRG";
             this.lecturaRG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -247,9 +250,9 @@ namespace Biofeedback
             // 
             this.maxCardio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maxCardio.ForeColor = System.Drawing.Color.HotPink;
-            this.maxCardio.Location = new System.Drawing.Point(777, 124);
+            this.maxCardio.Location = new System.Drawing.Point(772, 185);
             this.maxCardio.Name = "maxCardio";
-            this.maxCardio.Size = new System.Drawing.Size(56, 33);
+            this.maxCardio.Size = new System.Drawing.Size(76, 33);
             this.maxCardio.TabIndex = 23;
             this.maxCardio.Text = "maxCardio";
             this.maxCardio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -258,9 +261,9 @@ namespace Biofeedback
             // 
             this.maxMio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maxMio.ForeColor = System.Drawing.Color.HotPink;
-            this.maxMio.Location = new System.Drawing.Point(777, 265);
+            this.maxMio.Location = new System.Drawing.Point(772, 326);
             this.maxMio.Name = "maxMio";
-            this.maxMio.Size = new System.Drawing.Size(43, 33);
+            this.maxMio.Size = new System.Drawing.Size(94, 33);
             this.maxMio.TabIndex = 24;
             this.maxMio.Text = "maxMio";
             this.maxMio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -269,9 +272,9 @@ namespace Biofeedback
             // 
             this.maxRG.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maxRG.ForeColor = System.Drawing.Color.HotPink;
-            this.maxRG.Location = new System.Drawing.Point(777, 425);
+            this.maxRG.Location = new System.Drawing.Point(762, 486);
             this.maxRG.Name = "maxRG";
-            this.maxRG.Size = new System.Drawing.Size(42, 33);
+            this.maxRG.Size = new System.Drawing.Size(104, 33);
             this.maxRG.TabIndex = 25;
             this.maxRG.Text = "maxRG";
             this.maxRG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -280,9 +283,9 @@ namespace Biofeedback
             // 
             this.minCardio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minCardio.ForeColor = System.Drawing.Color.HotPink;
-            this.minCardio.Location = new System.Drawing.Point(680, 124);
+            this.minCardio.Location = new System.Drawing.Point(684, 185);
             this.minCardio.Name = "minCardio";
-            this.minCardio.Size = new System.Drawing.Size(53, 33);
+            this.minCardio.Size = new System.Drawing.Size(78, 33);
             this.minCardio.TabIndex = 26;
             this.minCardio.Text = "minCardio";
             this.minCardio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -291,9 +294,9 @@ namespace Biofeedback
             // 
             this.minMio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minMio.ForeColor = System.Drawing.Color.HotPink;
-            this.minMio.Location = new System.Drawing.Point(680, 265);
+            this.minMio.Location = new System.Drawing.Point(684, 326);
             this.minMio.Name = "minMio";
-            this.minMio.Size = new System.Drawing.Size(40, 33);
+            this.minMio.Size = new System.Drawing.Size(78, 33);
             this.minMio.TabIndex = 27;
             this.minMio.Text = "minMio";
             this.minMio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -302,20 +305,21 @@ namespace Biofeedback
             // 
             this.minRG.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minRG.ForeColor = System.Drawing.Color.HotPink;
-            this.minRG.Location = new System.Drawing.Point(680, 425);
+            this.minRG.Location = new System.Drawing.Point(670, 486);
             this.minRG.Name = "minRG";
-            this.minRG.Size = new System.Drawing.Size(39, 33);
+            this.minRG.Size = new System.Drawing.Size(92, 33);
             this.minRG.TabIndex = 28;
             this.minRG.Text = "minRG";
             this.minRG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.minRG.Click += new System.EventHandler(this.minRG_Click);
             // 
             // mitjanaCardio
             // 
             this.mitjanaCardio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mitjanaCardio.ForeColor = System.Drawing.Color.HotPink;
-            this.mitjanaCardio.Location = new System.Drawing.Point(868, 124);
+            this.mitjanaCardio.Location = new System.Drawing.Point(872, 185);
             this.mitjanaCardio.Name = "mitjanaCardio";
-            this.mitjanaCardio.Size = new System.Drawing.Size(95, 33);
+            this.mitjanaCardio.Size = new System.Drawing.Size(116, 33);
             this.mitjanaCardio.TabIndex = 29;
             this.mitjanaCardio.Text = "mitjanaCardio";
             this.mitjanaCardio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -324,9 +328,9 @@ namespace Biofeedback
             // 
             this.mitjanaMio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mitjanaMio.ForeColor = System.Drawing.Color.HotPink;
-            this.mitjanaMio.Location = new System.Drawing.Point(868, 265);
+            this.mitjanaMio.Location = new System.Drawing.Point(872, 326);
             this.mitjanaMio.Name = "mitjanaMio";
-            this.mitjanaMio.Size = new System.Drawing.Size(82, 33);
+            this.mitjanaMio.Size = new System.Drawing.Size(116, 33);
             this.mitjanaMio.TabIndex = 30;
             this.mitjanaMio.Text = "mitjanaMio";
             this.mitjanaMio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -335,9 +339,9 @@ namespace Biofeedback
             // 
             this.mitjanaRG.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mitjanaRG.ForeColor = System.Drawing.Color.HotPink;
-            this.mitjanaRG.Location = new System.Drawing.Point(868, 425);
+            this.mitjanaRG.Location = new System.Drawing.Point(860, 486);
             this.mitjanaRG.Name = "mitjanaRG";
-            this.mitjanaRG.Size = new System.Drawing.Size(81, 33);
+            this.mitjanaRG.Size = new System.Drawing.Size(132, 33);
             this.mitjanaRG.TabIndex = 31;
             this.mitjanaRG.Text = "mitjanaRG";
             this.mitjanaRG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -346,7 +350,7 @@ namespace Biofeedback
             // 
             this.sdCardio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sdCardio.ForeColor = System.Drawing.Color.HotPink;
-            this.sdCardio.Location = new System.Drawing.Point(1006, 124);
+            this.sdCardio.Location = new System.Drawing.Point(1010, 185);
             this.sdCardio.Name = "sdCardio";
             this.sdCardio.Size = new System.Drawing.Size(78, 33);
             this.sdCardio.TabIndex = 32;
@@ -357,7 +361,7 @@ namespace Biofeedback
             // 
             this.sdMio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sdMio.ForeColor = System.Drawing.Color.HotPink;
-            this.sdMio.Location = new System.Drawing.Point(1006, 265);
+            this.sdMio.Location = new System.Drawing.Point(1010, 326);
             this.sdMio.Name = "sdMio";
             this.sdMio.Size = new System.Drawing.Size(65, 33);
             this.sdMio.TabIndex = 33;
@@ -368,17 +372,62 @@ namespace Biofeedback
             // 
             this.sdRG.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sdRG.ForeColor = System.Drawing.Color.HotPink;
-            this.sdRG.Location = new System.Drawing.Point(1006, 425);
+            this.sdRG.Location = new System.Drawing.Point(1004, 486);
             this.sdRG.Name = "sdRG";
-            this.sdRG.Size = new System.Drawing.Size(64, 33);
+            this.sdRG.Size = new System.Drawing.Size(84, 33);
             this.sdRG.TabIndex = 34;
             this.sdRG.Text = "sdRG";
             this.sdRG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // botoFinalitza
+            // 
+            this.botoFinalitza.BackColor = System.Drawing.Color.GhostWhite;
+            this.botoFinalitza.Cursor = System.Windows.Forms.Cursors.Default;
+            this.botoFinalitza.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.botoFinalitza.ForeColor = System.Drawing.Color.HotPink;
+            this.botoFinalitza.Location = new System.Drawing.Point(233, 0);
+            this.botoFinalitza.Name = "botoFinalitza";
+            this.botoFinalitza.Size = new System.Drawing.Size(152, 40);
+            this.botoFinalitza.TabIndex = 39;
+            this.botoFinalitza.Text = "Finalitza l\'estudi";
+            this.botoFinalitza.UseVisualStyleBackColor = false;
+            this.botoFinalitza.Click += new System.EventHandler(this.botoFinalitza_Click);
+            // 
+            // botoInicia
+            // 
+            this.botoInicia.BackColor = System.Drawing.Color.GhostWhite;
+            this.botoInicia.Cursor = System.Windows.Forms.Cursors.Default;
+            this.botoInicia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.botoInicia.ForeColor = System.Drawing.Color.HotPink;
+            this.botoInicia.Location = new System.Drawing.Point(61, 0);
+            this.botoInicia.Name = "botoInicia";
+            this.botoInicia.Size = new System.Drawing.Size(152, 40);
+            this.botoInicia.TabIndex = 38;
+            this.botoInicia.Text = "Inicia l\'estudi";
+            this.botoInicia.UseVisualStyleBackColor = false;
+            this.botoInicia.Click += new System.EventHandler(this.botoInicia_Click);
+            // 
+            // botoAnula
+            // 
+            this.botoAnula.BackColor = System.Drawing.Color.GhostWhite;
+            this.botoAnula.Cursor = System.Windows.Forms.Cursors.Default;
+            this.botoAnula.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.botoAnula.ForeColor = System.Drawing.Color.HotPink;
+            this.botoAnula.Location = new System.Drawing.Point(752, 0);
+            this.botoAnula.Name = "botoAnula";
+            this.botoAnula.Size = new System.Drawing.Size(152, 40);
+            this.botoAnula.TabIndex = 41;
+            this.botoAnula.Text = "Anul·la l\'estudi";
+            this.botoAnula.UseVisualStyleBackColor = false;
+            this.botoAnula.Click += new System.EventHandler(this.botoAnula_Click);
             // 
             // UserControl_Grafiques
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.botoAnula);
+            this.Controls.Add(this.botoFinalitza);
+            this.Controls.Add(this.botoInicia);
             this.Controls.Add(this.sdRG);
             this.Controls.Add(this.sdMio);
             this.Controls.Add(this.sdCardio);
@@ -402,7 +451,7 @@ namespace Biofeedback
             this.Controls.Add(this.lectures);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UserControl_Grafiques";
-            this.Size = new System.Drawing.Size(1118, 542);
+            this.Size = new System.Drawing.Size(1118, 592);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -439,5 +488,8 @@ namespace Biofeedback
         private System.Windows.Forms.Label sdCardio;
         private System.Windows.Forms.Label sdMio;
         private System.Windows.Forms.Label sdRG;
+        private System.Windows.Forms.Button botoFinalitza;
+        private System.Windows.Forms.Button botoInicia;
+        private System.Windows.Forms.Button botoAnula;
     }
 }

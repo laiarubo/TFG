@@ -123,6 +123,26 @@ namespace Biofeedback.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap error_ezgif {
+            get {
+                object obj = ResourceManager.GetObject("error_ezgif", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap error_ezgif_petita {
+            get {
+                object obj = ResourceManager.GetObject("error_ezgif_petita", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Flexing_Muscles_Emoji_petit {
             get {
                 object obj = ResourceManager.GetObject("Flexing Muscles Emoji_petit", resourceCulture);

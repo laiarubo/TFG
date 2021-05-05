@@ -39,3 +39,17 @@ C:\Users\Usuària\Documents\__UAB__\__TFG__\_Projecte_\ContingutBD\obj\Debug\Con
 C:\Users\Usuària\Documents\__UAB__\__TFG__\_Projecte_\ContingutBD\obj\Debug\ContingutBD.csproj.CopyComplete
 C:\Users\Usuària\Documents\__UAB__\__TFG__\_Projecte_\ContingutBD\obj\Debug\ContingutBD.exe
 C:\Users\Usuària\Documents\__UAB__\__TFG__\_Projecte_\ContingutBD\obj\Debug\ContingutBD.pdb
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\bin\Debug\ContingutBD.exe.config
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\bin\Debug\ContingutBD.exe
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\bin\Debug\ContingutBD.pdb
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\bin\Debug\Dapper.dll
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\bin\Debug\System.Data.SQLite.dll
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\bin\Debug\Dapper.xml
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\bin\Debug\System.Data.SQLite.xml
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\obj\Debug\ContingutBD.csprojAssemblyReference.cache
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\obj\Debug\ContingutBD.Properties.Resources.resources
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\obj\Debug\ContingutBD.csproj.GenerateResource.cache
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\obj\Debug\ContingutBD.csproj.CoreCompileInputs.cache
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\obj\Debug\ContingutBD.csproj.CopyComplete
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\obj\Debug\ContingutBD.exe
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\ContingutBD\obj\Debug\ContingutBD.pdb

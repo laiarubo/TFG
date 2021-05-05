@@ -124,17 +124,23 @@
   <data name="corRosa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\corRosa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="error_ezgif" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\error_ezgif.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="cor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sweat Water Emoji_petit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sweat Water Emoji_petit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="tensioMuscular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tensioMuscular.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="sudoracio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sudoracio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tensioMuscular" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tensioMuscular.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="corVermell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\corVermell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Flexing Muscles Emoji_petit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Flexing Muscles Emoji_petit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,7 +151,7 @@
   <data name="cor_petit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cor_petit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="corVermell" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corVermell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="error_ezgif_petita" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\error_ezgif_petita.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

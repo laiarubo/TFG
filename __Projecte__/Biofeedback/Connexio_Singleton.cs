@@ -106,7 +106,10 @@ namespace Biofeedback
 
         public bool portObert()
         {
-            return PORTSELECCIONAT.IsOpen;
+            if (PORTSELECCIONAT != null)
+                return true;// PORTSELECCIONAT.IsOpen;
+            else
+                return false;
         }
     }
 }

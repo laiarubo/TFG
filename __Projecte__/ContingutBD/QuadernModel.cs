@@ -9,7 +9,6 @@ namespace ContingutBD
     public class QuadernModel
     {
         public int ID { get; set; }
-
         public string Missatge { get; set; }
     }
 }

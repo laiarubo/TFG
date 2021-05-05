@@ -12,15 +12,18 @@ boolean CONNECTAT = false;
 // TASCA 2 = VOSTRAR VALORS CADA X TEMPS
 unsigned long PREVIOUS_TIME2 = millis();
 unsigned long PREVIOUS_TIME3 = millis();
-long TIME_INTERVAL2 = 1000; // 1 segon
-long TIME_INTERVAL3 = 2000; // 2 segons
+long TIME_INTERVAL2 = 500; 
+long TIME_INTERVAL3 = 500; 
 long VALOR_ALEATORI2;
 long VALOR_ALEATORI3;
 
-// TASCA 3 = LLEGIR LES DADES DEL PULSE SENSOR
+// TASCA 3 = LLEGIR LES DADES DEL PULSE SENSOR i del galvanic
 const int PulseWire = 0;       // PulseSensor PURPLE WIRE connected to ANALOG PIN 0
 int Threshold = 550;           // Default "count as a beat" signal value
 PulseSensorPlayground pulseSensor;  // Creates an instance of the PulseSensorPlayground object called "pulseSensor"
+int gsr_value = 0;
+int gsr_average = 0;
+
 
 void setup() {
   Serial.begin(9600); // baud rate
@@ -93,12 +96,13 @@ void loop() {
   if (currentTime2 - PREVIOUS_TIME2 > TIME_INTERVAL2)
   {
     PREVIOUS_TIME2 = currentTime2;
-    VALOR_ALEATORI2 = random(1,3); // Valor enter entre 1 i 2
+    
+    int muscleSensorValue = analogRead(A1);
     DynamicJsonBuffer jBuffer2;
     JsonObject& obj2 = jBuffer2.createObject();
     obj2["idDispositiu"] = 1;
     obj2["idSensor"] = 2;
-    obj2["valor"] = VALOR_ALEATORI2;
+    obj2["valor"] = muscleSensorValue;
     obj2.printTo(Serial);
     Serial.print('\n');
   }
@@ -109,12 +113,21 @@ void loop() {
   if (currentTime3 - PREVIOUS_TIME3 > TIME_INTERVAL3)
   {
     PREVIOUS_TIME3 = currentTime3;
-    VALOR_ALEATORI3 = random(10,50);
+    
+    long sum=0;
+    for(int i=0;i<50;i++) //Average the 10 measurements to remove the glitch
+    {
+      gsr_value = analogRead(A2);
+      sum += gsr_value;
+    }
+    
+    gsr_average = sum/10;
+
     DynamicJsonBuffer jBuffer3;
     JsonObject& obj3 = jBuffer3.createObject();
     obj3["idDispositiu"] = 1;
     obj3["idSensor"] = 3;
-    obj3["valor"] = VALOR_ALEATORI3;
+    obj3["valor"] = gsr_average;
     obj3.printTo(Serial);
     Serial.print('\n');
   }

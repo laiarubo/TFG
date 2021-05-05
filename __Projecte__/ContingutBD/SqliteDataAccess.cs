@@ -8,12 +8,43 @@ using System.Threading.Tasks;
 using System.Data.SQLite;
 using Dapper;
 
+
+
+
 namespace ContingutBD
 {
     public class SqliteDataAccess
     {
-        private static float retorn;
-        private static readonly float output;
+        public static void desaValorsCardiograma_BD(int min, int max, float x, float sd) 
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                SQLiteCommand cmd = new SQLiteCommand($"INSERT INTO Cardiograma_BD(minim,maxim,mitjana,sd) VALUES({min},{max},{x},{sd})", conn);
+                //SQLiteCommand cmd = new SQLiteCommand("INSERT INTO Cardiograma_BD(minim,maxim) VALUES(" + min.ToString() + "," + max.ToString() + ")", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }   
+        }
+
+        public static void desaValorsMiograma_BD(int min, int max, float x, float sd) 
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                SQLiteCommand cmd = new SQLiteCommand($"INSERT INTO Miograma_BD(minim,maxim,mitjana,sd) VALUES({min},{max},{x},{sd})", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void desaValorsRG_BD(int min, int max, float x, float sd) 
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                SQLiteCommand cmd = new SQLiteCommand($"INSERT INTO RespostaGalvanica_BD(minim,maxim,mitjana,sd) VALUES({min},{max},{x},{sd})", conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
         public static List<QuadernModel> LoadQuadern()
         {            

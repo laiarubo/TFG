@@ -158,3 +158,4 @@ C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\Biofeedback\obj\Debug\B
 C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\Biofeedback\obj\Debug\Biofeedback.csproj.CopyComplete
 C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\Biofeedback\obj\Debug\Biofeedback.exe
 C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\Biofeedback\obj\Debug\Biofeedback.pdb
+C:\Users\Usuària\Documents\__UAB__\__TFG__\__Projecte__\Biofeedback\obj\Debug\Biofeedback.Form_ErrorPortCOM.resources

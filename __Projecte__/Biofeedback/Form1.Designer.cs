@@ -45,6 +45,12 @@
             this.QuadernBitacoles_richTextBox = new System.Windows.Forms.RichTextBox();
             this.BotoEnvia = new System.Windows.Forms.Button();
             this.WindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.minutsSessio = new System.Windows.Forms.Label();
+            this.simbolTempsSessio = new System.Windows.Forms.Label();
+            this.segonsSessio = new System.Windows.Forms.Label();
+            this.duradaSessioTitol = new System.Windows.Forms.Label();
+            this.timer_sessio = new System.Windows.Forms.Timer(this.components);
+            this.timer_estimul = new System.Windows.Forms.Timer(this.components);
             this.grafiques_UserControl1 = new Biofeedback.UserControl_Grafiques();
             ((System.ComponentModel.ISupportInitialize)(this.WindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +59,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.HotPink;
-            this.label1.Location = new System.Drawing.Point(12, 5);
+            this.label1.Location = new System.Drawing.Point(42, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 0;
@@ -64,7 +70,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.HotPink;
-            this.label2.Location = new System.Drawing.Point(12, 31);
+            this.label2.Location = new System.Drawing.Point(42, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 1;
@@ -77,7 +83,7 @@
             // 
             // NotesTerapeuta
             // 
-            this.NotesTerapeuta.Location = new System.Drawing.Point(181, 849);
+            this.NotesTerapeuta.Location = new System.Drawing.Point(77, 907);
             this.NotesTerapeuta.Name = "NotesTerapeuta";
             this.NotesTerapeuta.Size = new System.Drawing.Size(464, 20);
             this.NotesTerapeuta.TabIndex = 3;
@@ -87,7 +93,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(15, 65);
+            this.comboBox1.Location = new System.Drawing.Point(1001, 6);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(70, 21);
             this.comboBox1.TabIndex = 5;
@@ -96,11 +102,11 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(15, 92);
+            this.checkBox1.Location = new System.Drawing.Point(1001, 33);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(70, 17);
+            this.checkBox1.Size = new System.Drawing.Size(123, 17);
             this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "LEDtemp";
+            this.checkBox1.Text = "Comprovar connexió";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -111,7 +117,7 @@
             // rutaFitxer
             // 
             this.rutaFitxer.BackColor = System.Drawing.Color.White;
-            this.rutaFitxer.Location = new System.Drawing.Point(817, 573);
+            this.rutaFitxer.Location = new System.Drawing.Point(713, 631);
             this.rutaFitxer.Name = "rutaFitxer";
             this.rutaFitxer.ReadOnly = true;
             this.rutaFitxer.Size = new System.Drawing.Size(358, 20);
@@ -124,7 +130,7 @@
             this.botoCercaVideo.Cursor = System.Windows.Forms.Cursors.Default;
             this.botoCercaVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botoCercaVideo.ForeColor = System.Drawing.Color.HotPink;
-            this.botoCercaVideo.Location = new System.Drawing.Point(736, 570);
+            this.botoCercaVideo.Location = new System.Drawing.Point(632, 628);
             this.botoCercaVideo.Name = "botoCercaVideo";
             this.botoCercaVideo.Size = new System.Drawing.Size(75, 23);
             this.botoCercaVideo.TabIndex = 10;
@@ -138,7 +144,7 @@
             this.botoPlayVideo.Cursor = System.Windows.Forms.Cursors.Default;
             this.botoPlayVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botoPlayVideo.ForeColor = System.Drawing.Color.HotPink;
-            this.botoPlayVideo.Location = new System.Drawing.Point(904, 841);
+            this.botoPlayVideo.Location = new System.Drawing.Point(800, 899);
             this.botoPlayVideo.Name = "botoPlayVideo";
             this.botoPlayVideo.Size = new System.Drawing.Size(50, 34);
             this.botoPlayVideo.TabIndex = 11;
@@ -157,7 +163,7 @@
             this.botoAturaVideo.Cursor = System.Windows.Forms.Cursors.Default;
             this.botoAturaVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.botoAturaVideo.ForeColor = System.Drawing.Color.HotPink;
-            this.botoAturaVideo.Location = new System.Drawing.Point(960, 841);
+            this.botoAturaVideo.Location = new System.Drawing.Point(856, 899);
             this.botoAturaVideo.Name = "botoAturaVideo";
             this.botoAturaVideo.Size = new System.Drawing.Size(50, 34);
             this.botoAturaVideo.TabIndex = 12;
@@ -168,7 +174,7 @@
             // QuadernBitacoles_richTextBox
             // 
             this.QuadernBitacoles_richTextBox.BackColor = System.Drawing.Color.White;
-            this.QuadernBitacoles_richTextBox.Location = new System.Drawing.Point(181, 573);
+            this.QuadernBitacoles_richTextBox.Location = new System.Drawing.Point(77, 631);
             this.QuadernBitacoles_richTextBox.Name = "QuadernBitacoles_richTextBox";
             this.QuadernBitacoles_richTextBox.ReadOnly = true;
             this.QuadernBitacoles_richTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -183,7 +189,7 @@
             this.BotoEnvia.Cursor = System.Windows.Forms.Cursors.Default;
             this.BotoEnvia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BotoEnvia.ForeColor = System.Drawing.Color.HotPink;
-            this.BotoEnvia.Location = new System.Drawing.Point(651, 846);
+            this.BotoEnvia.Location = new System.Drawing.Point(547, 904);
             this.BotoEnvia.Name = "BotoEnvia";
             this.BotoEnvia.Size = new System.Drawing.Size(53, 23);
             this.BotoEnvia.TabIndex = 14;
@@ -194,19 +200,65 @@
             // WindowsMediaPlayer1
             // 
             this.WindowsMediaPlayer1.Enabled = true;
-            this.WindowsMediaPlayer1.Location = new System.Drawing.Point(736, 599);
+            this.WindowsMediaPlayer1.Location = new System.Drawing.Point(632, 657);
             this.WindowsMediaPlayer1.Name = "WindowsMediaPlayer1";
             this.WindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("WindowsMediaPlayer1.OcxState")));
             this.WindowsMediaPlayer1.Size = new System.Drawing.Size(439, 236);
             this.WindowsMediaPlayer1.TabIndex = 8;
             this.WindowsMediaPlayer1.Enter += new System.EventHandler(this.WindowsMediaPlayer1_Enter);
             // 
+            // minutsSessio
+            // 
+            this.minutsSessio.ForeColor = System.Drawing.Color.HotPink;
+            this.minutsSessio.Location = new System.Drawing.Point(1079, 918);
+            this.minutsSessio.Name = "minutsSessio";
+            this.minutsSessio.Size = new System.Drawing.Size(22, 28);
+            this.minutsSessio.TabIndex = 22;
+            this.minutsSessio.Text = "00";
+            // 
+            // simbolTempsSessio
+            // 
+            this.simbolTempsSessio.ForeColor = System.Drawing.Color.HotPink;
+            this.simbolTempsSessio.Location = new System.Drawing.Point(1096, 917);
+            this.simbolTempsSessio.Name = "simbolTempsSessio";
+            this.simbolTempsSessio.Size = new System.Drawing.Size(22, 28);
+            this.simbolTempsSessio.TabIndex = 23;
+            this.simbolTempsSessio.Text = ":";
+            // 
+            // segonsSessio
+            // 
+            this.segonsSessio.ForeColor = System.Drawing.Color.HotPink;
+            this.segonsSessio.Location = new System.Drawing.Point(1105, 918);
+            this.segonsSessio.Name = "segonsSessio";
+            this.segonsSessio.Size = new System.Drawing.Size(22, 28);
+            this.segonsSessio.TabIndex = 24;
+            this.segonsSessio.Text = "00";
+            // 
+            // duradaSessioTitol
+            // 
+            this.duradaSessioTitol.AutoSize = true;
+            this.duradaSessioTitol.ForeColor = System.Drawing.Color.HotPink;
+            this.duradaSessioTitol.Location = new System.Drawing.Point(970, 919);
+            this.duradaSessioTitol.Name = "duradaSessioTitol";
+            this.duradaSessioTitol.Size = new System.Drawing.Size(98, 13);
+            this.duradaSessioTitol.TabIndex = 25;
+            this.duradaSessioTitol.Text = "DURADA SESSIÓ:";
+            this.duradaSessioTitol.Click += new System.EventHandler(this.duradaSessioTitol_Click);
+            // 
+            // timer_sessio
+            // 
+            this.timer_sessio.Tick += new System.EventHandler(this.timer_sessio_Tick);
+            // 
+            // timer_estimul
+            // 
+            this.timer_estimul.Tick += new System.EventHandler(this.timer_estimul_Tick);
+            // 
             // grafiques_UserControl1
             // 
-            this.grafiques_UserControl1.Location = new System.Drawing.Point(149, 5);
+            this.grafiques_UserControl1.Location = new System.Drawing.Point(45, 56);
             this.grafiques_UserControl1.Name = "grafiques_UserControl1";
-            this.grafiques_UserControl1.R = null;
-            this.grafiques_UserControl1.Size = new System.Drawing.Size(1144, 515);
+            this.grafiques_UserControl1._R = null;
+            this.grafiques_UserControl1.Size = new System.Drawing.Size(1144, 533);
             this.grafiques_UserControl1.TabIndex = 15;
             // 
             // Form1
@@ -214,7 +266,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1353, 880);
+            this.ClientSize = new System.Drawing.Size(1205, 952);
+            this.Controls.Add(this.duradaSessioTitol);
+            this.Controls.Add(this.segonsSessio);
+            this.Controls.Add(this.simbolTempsSessio);
+            this.Controls.Add(this.minutsSessio);
             this.Controls.Add(this.grafiques_UserControl1);
             this.Controls.Add(this.BotoEnvia);
             this.Controls.Add(this.QuadernBitacoles_richTextBox);
@@ -254,6 +310,12 @@
         private System.Windows.Forms.Button BotoEnvia;
         public System.Windows.Forms.Button botoAturaVideo;
         private UserControl_Grafiques grafiques_UserControl1;
+        private System.Windows.Forms.Label minutsSessio;
+        private System.Windows.Forms.Label simbolTempsSessio;
+        private System.Windows.Forms.Label segonsSessio;
+        private System.Windows.Forms.Label duradaSessioTitol;
+        private System.Windows.Forms.Timer timer_sessio;
+        private System.Windows.Forms.Timer timer_estimul;
     }
 }
 

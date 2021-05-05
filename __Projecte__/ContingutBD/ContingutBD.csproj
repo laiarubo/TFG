@@ -64,16 +64,16 @@
     <Compile Include="LecturesCardio.cs" />
     <Compile Include="LecturesMio.cs" />
     <Compile Include="LecturesRG.cs" />
-    <Compile Include="Miograma.cs" />
+    <Compile Include="Miograma_BD.cs" />
     <Compile Include="Pacient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuadernModel.cs" />
-    <Compile Include="RespostaGalvanica.cs" />
+    <Compile Include="RespostaGalvanica_BD.cs" />
     <Compile Include="Sessio.cs" />
     <Compile Include="SqliteDataAccess.cs" />
     <Compile Include="Apunts.cs" />
-    <Compile Include="Cardiograma.cs" />
+    <Compile Include="Cardiograma_BD.cs" />
     <Compile Include="Terapeuta.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
