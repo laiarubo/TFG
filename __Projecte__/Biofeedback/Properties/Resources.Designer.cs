@@ -83,6 +83,16 @@ namespace Biofeedback.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Check_green_icon_petita {
+            get {
+                object obj = ResourceManager.GetObject("Check_green_icon_petita", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cor {
             get {
                 object obj = ResourceManager.GetObject("cor", resourceCulture);
@@ -143,9 +153,79 @@ namespace Biofeedback.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap error_ezgif_petita1 {
+            get {
+                object obj = ResourceManager.GetObject("error_ezgif_petita1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Flexing_Muscles_Emoji_petit {
             get {
                 object obj = ResourceManager.GetObject("Flexing Muscles Emoji_petit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Light_Bulb_petita {
+            get {
+                object obj = ResourceManager.GetObject("Light_Bulb_petita", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lluna_dibuix_petita {
+            get {
+                object obj = ResourceManager.GetObject("lluna_dibuix_petita", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lluna_dibuix2_petita {
+            get {
+                object obj = ResourceManager.GetObject("lluna_dibuix2_petita", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lluna_real_petita {
+            get {
+                object obj = ResourceManager.GetObject("lluna_real_petita", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lluna_real_petita1 {
+            get {
+                object obj = ResourceManager.GetObject("lluna_real_petita1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sol_petit {
+            get {
+                object obj = ResourceManager.GetObject("sol_petit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

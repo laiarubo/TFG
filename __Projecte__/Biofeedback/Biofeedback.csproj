@@ -106,11 +106,23 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_CalEstudiIniciatAbansReproduccio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CalEstudiIniciatAbansReproduccio.Designer.cs">
+      <DependentUpon>Form_CalEstudiIniciatAbansReproduccio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_ErrorPortCOM.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_ErrorPortCOM.Designer.cs">
       <DependentUpon>Form_ErrorPortCOM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_FinalitzaEstudi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_FinalitzaEstudi.Designer.cs">
+      <DependentUpon>Form_FinalitzaEstudi.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectesJSON.cs" />
     <Compile Include="UserControl_Grafiques.cs">
@@ -132,8 +144,14 @@
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_CalEstudiIniciatAbansReproduccio.resx">
+      <DependentUpon>Form_CalEstudiIniciatAbansReproduccio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_ErrorPortCOM.resx">
       <DependentUpon>Form_ErrorPortCOM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_FinalitzaEstudi.resx">
+      <DependentUpon>Form_FinalitzaEstudi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl_Grafiques.resx">
       <DependentUpon>UserControl_Grafiques.cs</DependentUpon>
@@ -231,6 +249,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\error_ezgif_petita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Check_green_icon_petita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error_ezgif_petita1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Light_Bulb_petita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sol_petit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lluna_real_petita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lluna_dibuix_petita.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lluna_real_petita1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lluna_dibuix2_petita.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

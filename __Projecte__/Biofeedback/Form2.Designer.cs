@@ -54,10 +54,10 @@
             // lecturaCardio
             // 
             this.lecturaCardio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lecturaCardio.ForeColor = System.Drawing.Color.HotPink;
-            this.lecturaCardio.Location = new System.Drawing.Point(290, 628);
+            this.lecturaCardio.ForeColor = System.Drawing.Color.White;
+            this.lecturaCardio.Location = new System.Drawing.Point(259, 628);
             this.lecturaCardio.Name = "lecturaCardio";
-            this.lecturaCardio.Size = new System.Drawing.Size(93, 35);
+            this.lecturaCardio.Size = new System.Drawing.Size(162, 35);
             this.lecturaCardio.TabIndex = 21;
             this.lecturaCardio.Text = "lecturaCardio";
             this.lecturaCardio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -65,10 +65,10 @@
             // lecturaMio
             // 
             this.lecturaMio.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lecturaMio.ForeColor = System.Drawing.Color.HotPink;
-            this.lecturaMio.Location = new System.Drawing.Point(468, 628);
+            this.lecturaMio.ForeColor = System.Drawing.Color.White;
+            this.lecturaMio.Location = new System.Drawing.Point(427, 629);
             this.lecturaMio.Name = "lecturaMio";
-            this.lecturaMio.Size = new System.Drawing.Size(64, 35);
+            this.lecturaMio.Size = new System.Drawing.Size(144, 35);
             this.lecturaMio.TabIndex = 22;
             this.lecturaMio.Text = "lecturaMio";
             this.lecturaMio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -76,10 +76,10 @@
             // lecturaRG
             // 
             this.lecturaRG.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lecturaRG.ForeColor = System.Drawing.Color.HotPink;
-            this.lecturaRG.Location = new System.Drawing.Point(621, 629);
+            this.lecturaRG.ForeColor = System.Drawing.Color.White;
+            this.lecturaRG.Location = new System.Drawing.Point(586, 629);
             this.lecturaRG.Name = "lecturaRG";
-            this.lecturaRG.Size = new System.Drawing.Size(65, 35);
+            this.lecturaRG.Size = new System.Drawing.Size(144, 35);
             this.lecturaRG.TabIndex = 23;
             this.lecturaRG.Text = "lecturaRG";
             this.lecturaRG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -113,7 +113,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.AutoScroll = true;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1003, 673);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

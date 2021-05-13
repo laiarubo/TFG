@@ -35,12 +35,16 @@ namespace Biofeedback
         // Reproducció del vídeo/àudio (vista terapeuta)
         bool ESTIMUL_DISPONIBLE = false;
         bool ATURA_PRIMER = true;
+        bool ESTUDI_INICIAT = false;
 
         // Reproducció del vídeo/àudio (vista pacient)
         private Form2 FRM2;
         private Form_ErrorPortCOM FRM_e;
         bool PRIMER_COP = true;
         bool REPRODUINTSE = false;
+
+        // Mode clar / mode fosc
+        bool MODE_CLAR = true;
 
         // =================================
 
@@ -87,6 +91,16 @@ namespace Biofeedback
             timer_sessio.Interval = 1000; // 1 tick cada segon
             timer_estimul.Interval = 1000;
             timer_sessio.Enabled = true;
+
+            grafiques_UserControl1._eventIniciaEstudi += setTEXT_ENVIAR;
+            grafiques_UserControl1._eventFinalitzaEstudi += setTEXT_ENVIAR;
+            grafiques_UserControl1._eventCancelaEstudi += setTEXT_ENVIAR;
+        }
+
+        private void setTEXT_ENVIAR(string s)
+        {
+            TEXT_ENVIAR = s;
+            backgroundWorker1.RunWorkerAsync();
         }
 
         private void mostraDuradaSessio()
@@ -129,7 +143,7 @@ namespace Biofeedback
             }
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        public void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             if (Connexio_Singleton.getInstance().portObert())
             {
@@ -159,7 +173,7 @@ namespace Biofeedback
             {
                 // Posar tota la línia del terapeuta de color blau
                 QuadernBitacoles_richTextBox.Select(match.Index, match.Length);
-                QuadernBitacoles_richTextBox.SelectionColor = Color.HotPink;
+                QuadernBitacoles_richTextBox.SelectionColor = Color.SteelBlue;
 
                 // Posar "Nota:" en negreta
                 Match match2 = Regex.Match(match.Value, "Nota:");
@@ -167,7 +181,7 @@ namespace Biofeedback
                 QuadernBitacoles_richTextBox.SelectionFont = new Font(QuadernBitacoles_richTextBox.Font, FontStyle.Bold);
             }
         }
-        private void BotoEnvia_Click(object sender, EventArgs e)
+        public void BotoEnvia_Click(object sender, EventArgs e)
         {
 
             if (Connexio_Singleton.getInstance().portObert())
@@ -200,14 +214,14 @@ namespace Biofeedback
 
             if (objFitxerObrir.ShowDialog() == /*System.Windows.Forms.*/DialogResult.OK) // Si troba el fitxer...
             {
-                /*this.*/rutaFitxer.Text = objFitxerObrir.FileName;
+                rutaFitxer.Text = objFitxerObrir.FileName;
                 ESTIMUL_DISPONIBLE = true;
 
                 TEXT_ENVIAR = "S'ha seleccionat l'estímul " + rutaFitxer.Text;
                 backgroundWorker1.RunWorkerAsync();
-             
-                
-                
+
+
+
                 //WindowsMediaPlayer1.URL = rutaFitxer.Text;
                 //WindowsMediaPlayer1.Ctlcontrols.play();
                 FRM2 = new Form2(rutaFitxer.Text);  // Només es pot fer PLAY. No es pot fer pausa ni res perquè no deixa prémer els botons del form1
@@ -218,57 +232,72 @@ namespace Biofeedback
 
         private void botoPlayVideo_Click(object sender, EventArgs e)
         {
-            if (ESTIMUL_DISPONIBLE)
-            {           
-                ATURA_PRIMER = false;
+            if (grafiques_UserControl1.getEstudiIniciat())
+            {
+                if (ESTIMUL_DISPONIBLE)
+                {           
+                    ATURA_PRIMER = false;
 
-                // Play (1r cop)
-                if (PRIMER_COP)
-                {
-                    timer_estimul.Enabled = true;
+                    // Play (1r cop)
+                    if (PRIMER_COP)
+                    {
+                        timer_estimul.Enabled = true;
 
-                    PRIMER_COP = false;
-                    WindowsMediaPlayer1.URL = rutaFitxer.Text;
-                    WindowsMediaPlayer1.Ctlcontrols.play();
-                    WindowsMediaPlayer1.settings.volume = 0;
-                    botoPlayVideo.Text = "| |";
-                    TEXT_ENVIAR = "(" + _minutsEstimul + ":" + _segonsEstimul + ")   " + "S'inicia l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
-                    backgroundWorker1.RunWorkerAsync();
-                    FRM2.PlayPrimerCop();
-                }
-                // Pausar
-                else if (REPRODUINTSE)
-                {
-                    timer_estimul.Enabled = false;
+                        PRIMER_COP = false;
+                        WindowsMediaPlayer1.URL = rutaFitxer.Text;
+                        WindowsMediaPlayer1.Ctlcontrols.play();
+                        WindowsMediaPlayer1.settings.volume = 0;
+                        botoPlayVideo.Text = "| |";
+                        TEXT_ENVIAR = "(" + _minutsEstimul + ":" + _segonsEstimul + ")   " + "S'inicia l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
+                        backgroundWorker1.RunWorkerAsync();
+                        FRM2.PlayPrimerCop();
+                    }
+                    // Pausar
+                    else if (REPRODUINTSE)
+                    {
+                        timer_estimul.Enabled = false;
 
-                    WindowsMediaPlayer1.Ctlcontrols.pause();
-                    botoPlayVideo.Text = "▶";
-                    TEXT_ENVIAR = "(" + _minutsEstimul + ":" + _segonsEstimul + ")   " + "Es pausa l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
-                    backgroundWorker1.RunWorkerAsync();
-                    FRM2.PauseVideo();
-                }
-                // Reprendre
+                        WindowsMediaPlayer1.Ctlcontrols.pause();
+                        botoPlayVideo.Text = "▶";
+                        TEXT_ENVIAR = "(" + _minutsEstimul + ":" + _segonsEstimul + ")   " + "Es pausa l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
+                        backgroundWorker1.RunWorkerAsync();
+                        FRM2.PauseVideo();
+                    }
+                    // Reprendre
+                    else
+                    {
+                        timer_estimul.Enabled = true;
+
+                        WindowsMediaPlayer1.Ctlcontrols.play();
+                        botoPlayVideo.Text = "| |";
+                        TEXT_ENVIAR = "(" + _minutsEstimul + ":" + _segonsEstimul + ")   " + "Es reprèn l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
+                        backgroundWorker1.RunWorkerAsync();
+                        FRM2.PlayVideo();
+                    }
+
+                    REPRODUINTSE = !REPRODUINTSE;                
+                }    
                 else
                 {
-                    timer_estimul.Enabled = true;
-
-                    WindowsMediaPlayer1.Ctlcontrols.play();
-                    botoPlayVideo.Text = "| |";
-                    TEXT_ENVIAR = "(" + _minutsEstimul + ":" + _segonsEstimul + ")   " + "Es reprèn l'estímul"; // VALORAR SI VAL LA PENA UTILITZAR TEXT_REBRE
-                    backgroundWorker1.RunWorkerAsync();
-                    FRM2.PlayVideo();
+                    MessageBox.Show("Si us plau, seleccioni un estímul.");
                 }
-
-                REPRODUINTSE = !REPRODUINTSE;                
-            }    
+            }
             else
             {
-                MessageBox.Show("Si us plau, seleccioni un estímul.");
+                aturaVideo();
+                Form_CalEstudiIniciatAbansReproduccio F_C = new Form_CalEstudiIniciatAbansReproduccio();
+                F_C.Show();
+                
             }
         }
 
         // Atura
         private void botoAturaVideo_Click(object sender, EventArgs e)
+        {
+            aturaVideo();            
+        }
+
+        private void aturaVideo()
         {
             if (ESTIMUL_DISPONIBLE)
             {
@@ -340,6 +369,12 @@ namespace Biofeedback
             _segonsEstimul = 0;
         }
 
+        public void misatgeINICIAR_ESTUDI()
+        {
+            TEXT_ENVIAR = "S'ha iniciat l'estudi.";
+            backgroundWorker1.RunWorkerAsync();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -376,6 +411,124 @@ namespace Biofeedback
         }
 
         private void QuadernBitacoles_richTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grafiques_UserControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void boto_CanviarMode_Click(object sender, EventArgs e)
+        {
+            if (MODE_CLAR)
+            {
+                MODE_CLAR = false;
+
+                string absolutePath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Imatges\sol.png");
+                boto_CanviarMode.Image = Image.FromFile(absolutePath);
+                boto_CanviarMode.BackColor = Color.DimGray;
+                boto_CanviarMode.ForeColor = Color.DimGray;
+                BackColor = Color.DimGray;
+                label1.ForeColor = Color.White;
+                label2.ForeColor = Color.White;
+                checkBox1.ForeColor = Color.White;
+                duradaSessioTitol.ForeColor = Color.White;
+                minutsSessio.ForeColor = Color.White;
+                simbolTempsSessio.ForeColor = Color.White;
+                segonsSessio.ForeColor = Color.White;
+                QuadernBitacoles_richTextBox.BackColor = Color.LightGray;
+                NotesTerapeuta.BackColor = Color.LightGray;
+                rutaFitxer.BackColor = Color.LightGray;
+                botoAturaVideo.ForeColor = Color.Black;
+                botoCercaVideo.ForeColor = Color.Black;
+                botoPlayVideo.ForeColor = Color.Black;
+                BotoEnvia.ForeColor = Color.Black;
+
+                grafiques_UserControl1.label1.ForeColor = Color.White;
+                grafiques_UserControl1.label2.ForeColor = Color.White;
+                grafiques_UserControl1.label3.ForeColor = Color.White;
+                grafiques_UserControl1.lectures.ForeColor = Color.White;
+                grafiques_UserControl1.evolucio.ForeColor = Color.White;
+                grafiques_UserControl1.maxim.ForeColor = Color.White;
+                grafiques_UserControl1.minim.ForeColor = Color.White;
+                grafiques_UserControl1.mitjana.ForeColor = Color.White;
+                grafiques_UserControl1.sd.ForeColor = Color.White;
+                grafiques_UserControl1.lecturaCardio.ForeColor = Color.White;
+                grafiques_UserControl1.lecturaMio.ForeColor= Color.White;
+                grafiques_UserControl1.lecturaRG.ForeColor = Color.White;
+                grafiques_UserControl1.maxCardio.ForeColor = Color.White;
+                grafiques_UserControl1.maxMio.ForeColor = Color.White;
+                grafiques_UserControl1.maxRG.ForeColor = Color.White;
+                grafiques_UserControl1.minCardio.ForeColor = Color.White;
+                grafiques_UserControl1.minMio.ForeColor = Color.White;
+                grafiques_UserControl1.minRG.ForeColor = Color.White;
+                grafiques_UserControl1.mitjanaCardio.ForeColor = Color.White;
+                grafiques_UserControl1.mitjanaMio.ForeColor = Color.White;
+                grafiques_UserControl1.mitjanaRG.ForeColor = Color.White;
+                grafiques_UserControl1.sdCardio.ForeColor = Color.White;
+                grafiques_UserControl1.sdMio.ForeColor = Color.White;
+                grafiques_UserControl1.sdRG.ForeColor = Color.White;
+                grafiques_UserControl1.botoAnula.ForeColor = Color.Black;
+                grafiques_UserControl1.botoFinalitza.ForeColor = Color.Black;
+                grafiques_UserControl1.botoInicia.ForeColor = Color.Black;
+            }
+            else
+            {
+                MODE_CLAR = true;
+                string absolutePath = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), @"Imatges\lluna.png");
+                boto_CanviarMode.Image = Image.FromFile(absolutePath);
+                boto_CanviarMode.BackColor = Color.WhiteSmoke;
+                boto_CanviarMode.ForeColor = Color.WhiteSmoke;
+                BackColor = Color.WhiteSmoke;
+                label1.ForeColor = Color.SteelBlue;
+                label2.ForeColor = Color.SteelBlue;
+                checkBox1.ForeColor = Color.SteelBlue;
+                duradaSessioTitol.ForeColor = Color.SteelBlue;
+                minutsSessio.ForeColor = Color.SteelBlue;
+                simbolTempsSessio.ForeColor = Color.SteelBlue;
+                segonsSessio.ForeColor = Color.SteelBlue;
+                QuadernBitacoles_richTextBox.BackColor = Color.White;
+                NotesTerapeuta.BackColor = Color.White;
+                rutaFitxer.BackColor = Color.White;
+                botoAturaVideo.ForeColor = Color.White;
+                botoCercaVideo.ForeColor = Color.White;
+                botoPlayVideo.ForeColor = Color.White;
+                BotoEnvia.ForeColor = Color.White;
+
+                grafiques_UserControl1.label1.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.label2.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.label3.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.lectures.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.evolucio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.maxim.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.minim.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.mitjana.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.sd.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.lecturaCardio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.lecturaMio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.lecturaRG.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.maxCardio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.maxMio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.maxRG.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.minCardio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.minMio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.minRG.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.mitjanaCardio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.mitjanaMio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.mitjanaRG.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.sdCardio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.sdMio.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.sdRG.ForeColor = Color.SteelBlue;
+                grafiques_UserControl1.botoAnula.ForeColor = Color.White;
+                grafiques_UserControl1.botoFinalitza.ForeColor = Color.White;
+                grafiques_UserControl1.botoInicia.ForeColor = Color.White;
+            }
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }

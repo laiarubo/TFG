@@ -28,14 +28,10 @@ namespace Biofeedback
         {
         }
 
-        [MethodImpl(MethodImplOptions.Synchronized)] // Per sincronitzar els threads
         public static Connexio_Singleton getInstance()
         {
             if (_instance == null)
-            {
                 _instance = new Connexio_Singleton();
-               
-            }
     
             return _instance;
         }

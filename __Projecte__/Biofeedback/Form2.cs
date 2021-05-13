@@ -19,9 +19,23 @@ namespace Biofeedback
             RUTA = rutaForm1;
             WindowsMediaPlayer2.uiMode = "none"; // Amaga els controls del WindowsMediaPlayer
 
+            // Inicialitza els valors
+
+            lecturaCardio.Text = "-";
+            lecturaMio.Text = "-";
+            lecturaRG.Text = "-";
+
             Connexio_Singleton.getInstance().nouEventCardiograma += MostraValorsArduino_Cardio;
             Connexio_Singleton.getInstance().nouEventMiograma += MostraValorsArduino_Mio;
             Connexio_Singleton.getInstance().nouEventRespostaGalvanica += MostraValorsArduino_RG;
+        }
+
+        public void canviaBackColor()
+        {
+            if (BackColor == Color.WhiteSmoke)
+                BackColor = Color.DimGray;
+            else
+                BackColor = Color.WhiteSmoke;
         }
 
         public void PlayPrimerCop()

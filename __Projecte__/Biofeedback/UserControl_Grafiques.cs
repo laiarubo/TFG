@@ -15,8 +15,12 @@ using ContingutBD;
 
 namespace Biofeedback
 {
+    
+
     public partial class UserControl_Grafiques : UserControl
     {
+        private static UserControl_Grafiques _instance;
+
         // Per a la comunicació amb la BD
         List<Cardiograma_BD> _CARDIOGRAMA_BD = new List<Cardiograma_BD>();
 
@@ -46,15 +50,48 @@ namespace Biofeedback
         List<float> _lectures_mio = new List<float>();
         List<float> _lectures_rg = new List<float>();
 
+        private Form_FinalitzaEstudi _frmF;
+
+        // Per enviar missatge al quadern de si s'ha iniciat/finalitzat/cancel·lat l'estímul
+        public delegate void EventData(string s);
+        public event EventData _eventIniciaEstudi;
+        public event EventData _eventFinalitzaEstudi;
+        public event EventData _eventCancelaEstudi;
+
+        bool _estudi_iniciat = false;
+
         public UserControl_Grafiques()
         {
             InitializeComponent();
+
+            botoFinalitza.Enabled = false;
+            botoAnula.Enabled = false;
 
             ocultaValors();
 
             construirCardiograma();
             construirMiograma();
             construirRespostaGalvanica();
+
+            
+        }
+        private void iniciaValors()
+        {
+            _minim_cardio_actual = 9999;
+            _minim_mio_actual = 9999;
+            _minim_rg_actual = 9999;
+
+            _maxim_cardio_actual = 0;
+            _maxim_mio_actual = 0;
+            _maxim_rg_actual = 0;
+
+            _mitjana_cardio = 0;
+            _mitjana_mio = 0;
+            _mitjana_rg = 0;
+
+            _sd_cardio = 0;
+            _sd_mio = 0;
+            _sd_rg = 0;
         }
 
         private void ocultaValors()
@@ -73,50 +110,8 @@ namespace Biofeedback
             minRG.Text = "-";
             mitjanaRG.Text = "-";
             sdRG.Text = "-";
-        }
 
-        private void construirCardiograma_tmp()
-        {
-
-
-            var mapper = Mappers.Xy<Cardiograma>()
-            .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
-            .Y(model => model.Value);           //use the value property as Y
-
-            //lets save the mapper globally.
-            Charting.For<Cardiograma>(mapper);
-
-            //the dadesCardiograma property will store our values array
-            _dadesCardiograma = new ChartValues<Cardiograma>();
-            cardiograma.Series = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Values = _dadesCardiograma,
-                    PointGeometrySize = 18,
-                    StrokeThickness = 4
-                }
-            };
-            cardiograma.AxisX.Add(new Axis
-            {
-                DisableAnimations = true,
-                LabelFormatter = value => new System.DateTime((long)value).ToString("mm:ss"),
-                Separator = new Separator
-                {
-                    Step = TimeSpan.FromSeconds(1).Ticks
-                }
-            });
-
-            SetAxisLimits(System.DateTime.Now);
-
-            //The next code simulates data changes every 1 second
-            _Timer = new Timer
-            {
-                Interval = 1000
-            };
-            _Timer.Tick += TimerOnTick;
-            _R = new Random();
-            _Timer.Start();
+            iniciaValors();
         }
 
         private void construirCardiograma()
@@ -501,15 +496,37 @@ namespace Biofeedback
             return (float) Math.Round(resultat, 2);
         }
 
-        private void botoInicia_Click(object sender, EventArgs e)
+        // Inicia l'estudi
+        public void botoInicia_Click(object sender, EventArgs e)
         {
+
+            _estudi_iniciat = true;
+
+
+            botoInicia.Enabled = false;
+            botoFinalitza.Enabled = true;
+            botoAnula.Enabled = true;
+
+            if (_eventIniciaEstudi != null) // És null quan no hi ha estímul seleccionat
+                _eventIniciaEstudi.Invoke("S'inicia l'estudi.");
+
+            
+            
             Connexio_Singleton.getInstance().nouEventCardiograma += mostraValorsArduinoCardio;
             Connexio_Singleton.getInstance().nouEventMiograma += mostraValorsArduinoMio;
             Connexio_Singleton.getInstance().nouEventRespostaGalvanica += mostraValorsArduinoRG;          
         }
 
+        // Finalitza l'estudi
         private void botoFinalitza_Click(object sender, EventArgs e)
         {
+            _estudi_iniciat = false;
+
+            botoFinalitza.Enabled = false;
+            botoInicia.Enabled = true;
+            botoAnula.Enabled = false;
+            _eventFinalitzaEstudi.Invoke("Es finalitza l'estudi.");
+
             // Carregar el resum estadístic a la BD
             SqliteDataAccess.desaValorsCardiograma_BD((int)_minim_cardio_actual, (int)_maxim_cardio_actual, _mitjana_cardio, _sd_cardio);
             SqliteDataAccess.desaValorsMiograma_BD((int)_minim_mio_actual, (int)_maxim_mio_actual, _mitjana_mio, _sd_mio);
@@ -522,10 +539,22 @@ namespace Biofeedback
             Connexio_Singleton.getInstance().nouEventCardiograma += mostraLecturesArduinoCardio;
             Connexio_Singleton.getInstance().nouEventMiograma += mostraLecturesArduinoMio;
             Connexio_Singleton.getInstance().nouEventRespostaGalvanica += mostraLecturesArduinoRG;
+
+            _frmF = new Form_FinalitzaEstudi();
+            _frmF.Show();
+            
         }
 
+        // Es cancel·la l'estudi
         private void botoAnula_Click(object sender, EventArgs e)
         {
+            _estudi_iniciat = false;
+
+            botoAnula.Enabled = false;
+            botoInicia.Enabled = true;
+            botoFinalitza.Enabled = false;
+            _eventCancelaEstudi.Invoke("Es cancel·la l'estudi.");
+
             // S'escriu "-" al resum estadístic de cada sensor instantàniament
             ocultaValors();
 
@@ -534,8 +563,21 @@ namespace Biofeedback
             Connexio_Singleton.getInstance().nouEventMiograma += mostraLecturesArduinoMio;
             Connexio_Singleton.getInstance().nouEventRespostaGalvanica += mostraLecturesArduinoRG;
         }
+        public bool getEstudiIniciat()
+        {
+            return _estudi_iniciat;
+        }
 
         private void minRG_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //public void evolucio(object sender, EventArgs e)
+        //{
+
+        //}
+        private void evolucio_Click(object sender, EventArgs e)
         {
 
         }
