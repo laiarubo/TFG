@@ -46,6 +46,7 @@ namespace Biofeedback
 
         public void PlayVideo()
         {
+            
             WindowsMediaPlayer2.Ctlcontrols.play();
         }
 

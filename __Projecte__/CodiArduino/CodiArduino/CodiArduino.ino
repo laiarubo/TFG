@@ -123,7 +123,7 @@ void loop() {
       sum += gsr_value;
     }
     
-    gsr_average = sum/10;
+    gsr_average = sum/50;
 
     DynamicJsonBuffer jBuffer3;
     JsonObject& obj3 = jBuffer3.createObject();
